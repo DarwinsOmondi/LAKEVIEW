@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lakeview Academy | Course Catalog</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="lakeview.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<!-- Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg text-white">
+<span class="material-symbols-outlined text-3xl">school</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Lakeview Academy</h1>
+</div>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="admin.html">Admin</a>
+<a class="text-sm font-semibold text-primary" href="catalog.html">Course Catalog</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="news.html">News</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="about.html">About</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="galery.html">Gallery</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="contact.html">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<a href="portal.html" class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-primary/20">
+                    Portal
+                </a>
+</div>
+</div>
+</header>
+<main class="flex flex-col">
+<!-- Hero Section -->
+<section class="@container">
+<div class="relative min-h-[450px] w-full overflow-hidden bg-slate-900 @[480px]:p-4">
+<div class="absolute inset-0 bg-cover bg-center opacity-60" data-alt="Modern university campus building with glass facade" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDxmL2d5sY8pqVLDo6GxWQpbGKRLUGZnY_GDHY65cLjdZ9Hy6XuB0AcjOW33nG9KyQyeIMhPq5ZnDWXDK96kGnhOfTp8n3Afol0xrFDj3SMclD0vSD0czDzKGaFB4Q_eL0zx6iAudhM3t8eHFeS5LUQEFO4yjUBciOx7fF1hornW0EUIzxhsC9qti-Zch5JxVzh-P36dIR-0B8XpY6DVidxBKJ4c4SnoMfAHWIkkCukG1okm-CxZZkVitk41cfghr3Cd0TChBVxRbg');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent"></div>
+<div class="relative flex h-full min-h-[450px] flex-col justify-end px-6 pb-12 pt-20 text-left">
+<div class="max-w-xl">
+<span class="mb-3 inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">Admissions Open 2024</span>
+<h1 class="text-4xl font-black leading-tight tracking-tight text-white @[480px]:text-5xl">
+                            Academic Excellence
+                        </h1>
+<p class="mt-4 text-lg font-normal text-slate-200 @[480px]:text-xl">
+                            Empowering future leaders through rigorous education and community at Lakeview Academy.
+                        </p>
+<div class="mt-8 flex flex-wrap gap-4">
+<button class="flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg transition-transform active:scale-95">
+                                Explore Programs
+                            </button>
+<button class="flex items-center justify-center rounded-xl bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition-transform active:scale-95">
+                                Virtual Tour
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 gap-4 p-6 sm:grid-cols-3">
+<div class="flex flex-col items-center justify-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-primary/5 dark:ring-primary/20">
+<span class="text-3xl font-black text-primary">1,200+</span>
+<p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Total Enrollment</p>
+</div>
+<div class="flex flex-col items-center justify-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-primary/5 dark:ring-primary/20">
+<span class="text-3xl font-black text-primary">18</span>
+<p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Avg. Class Size</p>
+</div>
+<div class="flex flex-col items-center justify-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-primary/5 dark:ring-primary/20">
+<span class="text-3xl font-black text-primary">150+</span>
+<p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Academic Faculty</p>
+</div>
+</section>
+<!-- Grade Levels -->
+<section class="px-6 py-8">
+<h2 class="mb-6 text-2xl font-bold tracking-tight">Upper School Grades</h2>
+<div class="grid gap-6 sm:grid-cols-2">
+<!-- Grade Card -->
+<div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10">
+<div class="h-32 bg-cover bg-center" data-alt="Students in a high school classroom setting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJW5l_0YIFZSMBL7AT6yzE44bpXEpJYqUYZLLnyjcRjjqm4AbAoVElNU5_1u4PMz-mS_NZP7IgIuXe8IglQCRMfMnm96oe9FCy10BLdYoSFNc2yArg6j0YAyZKO5IdqnmJ-91jimJEOboFLQFgqSjWXRv9UMOj2kyA1r2_0h4RmdIPAe-L4LwO1iDmEJ4boeu3uhI2d8SYXJ1x7bgdOt8CX9Q3hB9wfX6x4ZiInLEj9BrTZeGgIo4hKNY6XMknQ5Q7HhEGr7TrjH8')"></div>
+<div class="p-5">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold">Grade 9</h3>
+<span class="text-sm font-medium text-slate-500">280 Students</span>
+</div>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Foundation of advanced mathematics, global history, and biological sciences.</p>
+<button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary/5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white">
+                            View Curriculum
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10">
+<div class="h-32 bg-cover bg-center" data-alt="Science laboratory with modern equipment" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAz8UlLMbfbNNGBETgQ8AaPBqJfwXqKZvhEaABRT1kDDg_KMTPeH3Jj3NfYVURvcPpvFA0kIISIcoJjvs8w7U2fUicC2aBeXLxLWAlhcD0o7MoJQom5DJQHs9I1NX1q8HItUJ0bo5nJ1AxolxG8VOnQubUr_Y8wLZm6rMJfloms3kE5-pGcYWTVRaLy9GyIPulqoTGthLrjZK6QbcDF1dvi7Jluj5w_-NMPVRD0l6RgwNebW2GSpzMtEKXlbps7bwJYvEBhxcO2NI4')"></div>
+<div class="p-5">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold">Grade 10</h3>
+<span class="text-sm font-medium text-slate-500">310 Students</span>
+</div>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Focus on chemistry, world literature, and introduction to computer science.</p>
+<button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary/5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white">
+                            View Curriculum
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10">
+<div class="h-32 bg-cover bg-center" data-alt="Art studio with paintings and easels" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoYCkN8l7jE6bnbfmYNpg8pXPATK2qyoZJowC5sfPSLDKCojAfibWFajctnzAo3YgbhSnUi-T7_6VEMQYL6riHjU9ygl4U3fRFBlz7bxVyhiKWUfmxo7N9k13syZEXZwv_lTZTrvNdofjorzBLHpxDaWx0bv0AcbTdV4s5_W-_UKIgQeRSlMoSqKt1upegV9h7t7fDUJKv-Hk3VDVvfmBcDXExRWPiqomlsBtumMz8BJrPdO5g_qgkC4sfQf3BbZBBari4qJ92rgs')"></div>
+<div class="p-5">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold">Grade 11</h3>
+<span class="text-sm font-medium text-slate-500">295 Students</span>
+</div>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Physics, pre-calculus, and humanities with AP course options available.</p>
+<button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary/5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white">
+                            View Curriculum
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10">
+<div class="h-32 bg-cover bg-center" data-alt="Student studying in a modern library" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpXAz2936IMZT1FYaz68oN0u7sxie374z-i4MqohvKTC-mRBjq4HEZd2MmFKI2r5TtmB0vQAIcNa1oLoPrr_XgQ9X55XiWbWImyEDOHRXttyFT18dWx2hkACg12cugEv901y5kc7-tgxZpCC5Wn-VMAkpdYox48gy8W7Vxsr1_-kP5aPwOi7BXBqf7nfaYq2LQZN6A4qjid2DgEsDe36TfTH5OpCYallFcAs20VqVlmGXS2oblkJTtEPts4d3IH5mP19AwmLFZFNg')"></div>
+<div class="p-5">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold">Grade 12</h3>
+<span class="text-sm font-medium text-slate-500">315 Students</span>
+</div>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Capstone projects, university preparation, and advanced research seminars.</p>
+<button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary/5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white">
+                            View Curriculum
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Fee Structure Section -->
+<section class="bg-primary/5 px-6 py-12 dark:bg-white/5">
+<h2 class="mb-2 text-2xl font-bold tracking-tight">Fee Structure</h2>
+<p class="mb-8 text-sm text-slate-600 dark:text-slate-400">Comprehensive breakdown of annual educational investment.</p>
+<div class="space-y-4">
+<!-- Accordion Item 1 -->
+<div class="rounded-xl bg-white p-4 shadow-sm dark:bg-background-dark dark:ring-1 dark:ring-white/10">
+<div class="flex items-center justify-between">
+<span class="font-bold">Lower School (Grades K-5)</span>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+<div class="mt-4 space-y-3 text-sm">
+<div class="flex justify-between border-b border-slate-100 pb-2 dark:border-white/5">
+<span class="text-slate-500">Tuition Fees</span>
+<span class="font-semibold">$12,500</span>
+</div>
+<div class="flex justify-between border-b border-slate-100 pb-2 dark:border-white/5">
+<span class="text-slate-500">Activity Fees</span>
+<span class="font-semibold">$850</span>
+</div>
+<div class="flex justify-between pt-1">
+<span class="font-bold text-primary">Annual Total</span>
+<span class="font-bold text-primary">$13,350</span>
+</div>
+</div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="rounded-xl bg-white p-4 shadow-sm dark:bg-background-dark dark:ring-1 dark:ring-white/10">
+<div class="flex items-center justify-between">
+<span class="font-bold text-primary">Middle School (Grades 6-8)</span>
+<span class="material-symbols-outlined text-primary">expand_less</span>
+</div>
+<div class="mt-4 space-y-3 text-sm">
+<div class="flex justify-between border-b border-slate-100 pb-2 dark:border-white/5">
+<span class="text-slate-500">Tuition Fees</span>
+<span class="font-semibold">$15,200</span>
+</div>
+<div class="flex justify-between border-b border-slate-100 pb-2 dark:border-white/5">
+<span class="text-slate-500">Activity Fees</span>
+<span class="font-semibold">$1,200</span>
+</div>
+<div class="flex justify-between border-b border-slate-100 pb-2 dark:border-white/5">
+<span class="text-slate-500">Boarding (Optional)</span>
+<span class="font-semibold">$8,500</span>
+</div>
+<div class="flex justify-between pt-1">
+<span class="font-bold text-primary">Annual Total (Day)</span>
+<span class="font-bold text-primary">$16,400</span>
+</div>
+</div>
+</div>
+<!-- Accordion Item 3 -->
+<div class="rounded-xl bg-white p-4 shadow-sm dark:bg-background-dark dark:ring-1 dark:ring-white/10">
+<div class="flex items-center justify-between">
+<span class="font-bold">Upper School (Grades 9-12)</span>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+<div class="mt-4 space-y-3 text-sm">
+<div class="flex justify-between border-b border-slate-100 pb-2 dark:border-white/5">
+<span class="text-slate-500">Tuition Fees</span>
+<span class="font-semibold">$18,900</span>
+</div>
+<div class="flex justify-between border-b border-slate-100 pb-2 dark:border-white/5">
+<span class="text-slate-500">Activity Fees</span>
+<span class="font-semibold">$1,800</span>
+</div>
+<div class="flex justify-between border-b border-slate-100 pb-2 dark:border-white/5">
+<span class="text-slate-500">Boarding (Optional)</span>
+<span class="font-semibold">$10,200</span>
+</div>
+<div class="flex justify-between pt-1">
+<span class="font-bold text-primary">Annual Total (Day)</span>
+<span class="font-bold text-primary">$20,700</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-6 py-16 text-center">
+<h2 class="text-3xl font-black tracking-tight">Join our community</h2>
+<p class="mx-auto mt-4 max-w-md text-slate-600 dark:text-slate-400">
+                Start your journey towards academic excellence. Applications for the next fall semester are now being accepted.
+            </p>
+<div class="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+<button class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-bold text-white shadow-lg shadow-primary/30 transition-all hover:brightness-110 active:scale-95">
+<span class="material-symbols-outlined">download</span>
+                    Download Prospectus
+                </button>
+<button class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-8 py-4 text-base font-bold text-white transition-all dark:bg-white dark:text-slate-900 active:scale-95">
+<span class="material-symbols-outlined">calendar_today</span>
+                    Visit Campus
+                </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="mt-auto border-t border-slate-200 bg-white px-6 pb-12 pt-12 dark:border-white/10 dark:bg-background-dark">
+<div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+<div class="col-span-2 sm:col-span-1">
+<div class="flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined text-xl">school</span>
+</div>
+<span class="font-bold">Lakeview</span>
+</div>
+<p class="mt-4 text-xs leading-relaxed text-slate-500">
+                        123 Academy Way, Education Hill<br/>
+                        San Francisco, CA 94102<br/>
+                        admissions@lakeview.edu
+                    </p>
+</div>
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-primary">Academics</h4>
+<ul class="mt-4 space-y-2 text-sm text-slate-500">
+<li>Curriculum</li>
+<li>Faculty</li>
+<li>Library</li>
+<li>Research</li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-primary">Support</h4>
+<ul class="mt-4 space-y-2 text-sm text-slate-500">
+<li>Financial Aid</li>
+<li>Counseling</li>
+<li>Student Life</li>
+<li>Portal Login</li>
+</ul>
+</div>
+</div>
+<div class="mt-12 border-t border-slate-100 pt-8 text-center dark:border-white/5">
+<p class="text-xs text-slate-400">© 2024 Lakeview Academy. All rights reserved. Privacy Policy | Terms of Service</p>
+</div>
+</footer>
+</main>
+</body></html>

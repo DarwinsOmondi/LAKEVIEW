@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>News &amp; Announcements | Lakeview Academy</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="lakeview.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="w-full px-6 lg:px-10">
+<div class="flex h-16 items-center justify-between gap-4">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group" href="index.html">
+<div class="p-1.5 bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined block text-3xl">school</span>
+</div>
+<h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase">Lakeview Academy</h1>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-base font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="text-base font-semibold hover:text-primary transition-colors" href="admin.html">Admin</a>
+<a class="text-base font-semibold hover:text-primary transition-colors" href="catalog.html">Course Catalog</a>
+<a class="text-base font-semibold text-primary border-b-2 border-primary pb-0.5" href="news.html">News</a>
+<a class="text-base font-semibold hover:text-primary transition-colors" href="about.html">About</a>
+<a class="text-base font-semibold hover:text-primary transition-colors" href="galery.html">Gallery</a>
+<a class="text-base font-semibold hover:text-primary transition-colors" href="contact.html">Contact</a>
+</nav>
+</div>
+<div class="flex flex-1 items-center justify-end gap-4 max-w-md">
+<div class="relative w-full hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary transition-all" placeholder="Search announcements..." type="text"/>
+</div>
+<a href="portal.html" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 whitespace-nowrap">
+                        Parent Portal
+                    </a>
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden ring-2 ring-primary/20">
+<img class="w-full h-full object-cover" data-alt="User profile picture in a circular frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJnL1ORV1FWU9OxecsUU52kMYlBnOW-bicF_G1yXwhbhuHT-x7GoOdlbanNghWWkbB7JVE5JNWNE7y1r8p_IgZwkN3tAT3ASiHc7nN33uNKqk9jsjWT6SzFH0p56ZV2d4INlsbJ4-NIb0SlFlNi1L6P4K2kOkb_Y4T3rFjSjiJpP1dfAzfb-W8zLpEIaip65gNebK0SYgWr95ae6hCGE3q2bx-sT5yJCYdeOD3qgs8rjLdn08GE4Pl7_LNYM3csnQ6v8vcEhnFp_s"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Alert Section -->
+<section class="w-full mb-12">
+<div class="relative overflow-hidden bg-background-dark dark:bg-slate-900 shadow-2xl min-h-[400px] flex flex-col justify-end">
+<div class="absolute inset-0 opacity-40">
+<img class="w-full h-full object-cover" data-alt="Exterior view of a modern school campus building" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqt29T_3JHOrZPRjSNWeeJZsDcCWfnJShHaRhMovojwDb68FDAIbOoayzQrIEDm858TkjtdweW2AZCHqyGphiiibvvW7Y0cOR4X0B_YUrHks2nuEV4eJXHNokCdqcG_Ta1qubxwdzTrZr7qSq9ljC2wpSSzncybxHrKzYDS5BdiSAxBSMFRooVJhe2ehj30enoIYX4dpgxIvnemDbDSWiy2a6SQV7Ffzyswz6UoKZ7TCkwgJGHcpVahXlzz5WJwuniDFFgUawYKlE"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent"></div>
+<div class="relative z-10 w-full px-6 lg:px-10 py-12">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary text-white text-xs font-bold rounded-full mb-4 uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">error</span>
+                        Urgent Update
+                    </div>
+<h2 class="text-3xl md:text-5xl font-black text-white leading-tight mb-4 tracking-tight">
+                        School Closure: Inclement Weather Warning
+                    </h2>
+<p class="text-slate-200 text-lg mb-6 leading-relaxed">
+                        Lakeview Academy campus will remain closed tomorrow, Friday, October 25th, due to forecasted extreme weather conditions. Remote learning schedules have been sent to parent emails.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:translate-y-[-2px] transition-transform">
+                            View Full Details
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-xl font-bold hover:bg-white/20 transition-all">
+                            Learning Materials
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<div class="w-full px-6 lg:px-10 pb-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Sidebar Filters -->
+<aside class="lg:col-span-3 space-y-8 order-2 lg:order-1">
+<div>
+<h3 class="text-sm font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">filter_list</span>
+                        Categories
+                    </h3>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center justify-between px-4 py-2 rounded-lg bg-primary/10 text-primary font-bold" href="#">
+                            All News <span class="text-xs bg-primary text-white px-2 py-0.5 rounded-full">24</span>
+</a>
+<a class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-medium" href="#">
+                            Administration <span class="text-xs text-slate-500">12</span>
+</a>
+<a class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-medium" href="#">
+                            Academics <span class="text-xs text-slate-500">8</span>
+</a>
+
+</nav>
+</div>
+<div class="bg-slate-100 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<h3 class="text-sm font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
+                        Coming Soon
+                    </h3>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
+<span class="text-[10px] uppercase font-bold text-primary">Nov</span>
+<span class="text-lg font-black leading-none">12</span>
+</div>
+<div>
+<h4 class="text-sm font-bold leading-tight">Winter Arts Showcase</h4>
+<p class="text-xs text-slate-500 mt-1">Main Auditorium • 6:30 PM</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
+<span class="text-[10px] uppercase font-bold text-primary">Nov</span>
+<span class="text-lg font-black leading-none">15</span>
+</div>
+<div>
+<h4 class="text-sm font-bold leading-tight">College Prep Workshop</h4>
+<p class="text-xs text-slate-500 mt-1">Virtual Link Sent</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 text-sm font-bold text-primary hover:underline flex items-center justify-center gap-1">
+                        View Full Calendar
+                        <span class="material-symbols-outlined text-base">open_in_new</span>
+</button>
+</div>
+<div class="bg-primary/5 p-6 rounded-xl border-2 border-dashed border-primary/20 text-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-2">mail</span>
+<h3 class="font-bold mb-2">Weekly Briefing</h3>
+<p class="text-xs text-slate-500 mb-4 leading-relaxed">Get the most important news delivered to your inbox every Sunday.</p>
+<input class="w-full text-xs rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary mb-2" placeholder="email@example.com" type="email"/>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-xs font-bold hover:bg-primary/90 transition-colors">Subscribe</button>
+</div>
+</aside>
+<!-- News Feed -->
+<div class="lg:col-span-9 space-y-8 order-1 lg:order-2">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-2xl font-black tracking-tight">Latest Announcements</h2>
+<div class="flex items-center gap-2 text-sm text-slate-500 font-medium">
+                        Sort by: 
+                        <select class="bg-transparent border-none text-slate-900 dark:text-white font-bold py-0 focus:ring-0 cursor-pointer">
+<option>Newest First</option>
+<option>Oldest First</option>
+<option>Most Read</option>
+</select>
+</div>
+</div>
+<!-- News Item 1 -->
+<article class="group bg-white dark:bg-slate-900/40 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800 p-1 flex flex-col md:flex-row">
+<div class="w-full md:w-64 h-48 md:h-auto overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Senior students celebrating at a graduation ceremony" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA2plM6FR9WF4seMlVN7U72mDCMV3BJjbvuRSxXwM2OC9jinTes8-wTqgX-dwJ5XO1KkHJUe5KP0RwrmDfyDcrozKjc4eiB4VIagLOQX31lCLy3D4cyMma1HkdxzG-p3Lz4cs75zWbsLfcPZqrfHmaqStTWhCYo7VCL6Y2W4r-pFpHIwRysIidQt9qR4wPaj366nP6zLdmULQXbGBMVlDPGitwRPRA1QZOxIHkGa-7u8ICObQpfS_4PwXuAgJ3rmEYTilpYs8Wxhg"/>
+</div>
+<div class="flex-1 p-6 md:p-8 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<span class="text-xs font-black uppercase text-primary bg-primary/10 px-2 py-1 rounded">Administration</span>
+<span class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Oct 24, 2024
+                            </span>
+</div>
+<h3 class="text-xl md:text-2xl font-black mb-3 group-hover:text-primary transition-colors leading-tight">
+                            Annual Excellence Gala: Celebrating Our Scholars
+                        </h3>
+<p class="text-slate-600 dark:text-slate-400 line-clamp-2 mb-6">
+                            Join us for an evening of celebration as we honor the outstanding academic achievements of our senior class. Early bird tickets are now available for the upcoming November event.
+                        </p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a male school administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5JxwtHQDNBh2CSjqzXwv-58oow2W1oIeZ1LH9qHiljhIvFdB9uW1FvYl8ciH8-3x2vKjuDi3GH4D7kmgHNRn-txGy6P5k2rfNIEmoyHs_x3gxzdNlivo3DvRCVY8Qa6DDbpFB_MaQFy3dokgy8t421Qn-kYnOLEb2-KzO03myAhWj2XEvwxVDMZpcAUQYyd1gjKVO3o_N-LVmtILqAKHgdSefMrFW1HHxCI-a-yorgrsQXPqm-XvmROe5uu6DO7tquaqJsfEe7zU"/>
+</div>
+<span class="text-xs font-semibold">Principal Marcus Thorne</span>
+</div>
+<a class="text-primary font-bold text-sm flex items-center gap-1 group/link" href="#">
+                                Read More
+                                <span class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+<!-- News Item 2 -->
+<article class="group bg-white dark:bg-slate-900/40 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800 p-1 flex flex-col md:flex-row">
+<div class="w-full md:w-64 h-48 md:h-auto overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Student athletes running on a track during sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqHElVQtIXcAs0L3OCanD3dYjTcz_vGU6r_25z7Ov2lIQfE15DOSmIQX0kUO95HOdbd0wV6vxFS6cIuVZIvArSkCSqIj2PRRzrrLRHRr3r0MvkB8EsFotrWd2PflC9c2m9OgjS79wc-uj6-4lZFye74n5O336OIrTsEIEMm16IeRfBq0BF6tK3HL5qNw83h56oPBTlmynmMRBFJxsCFn3iNpKvmZqMa8WOx9cdoGdCDBSfQ9g6_bznN5oKFpbYfofpqrcGn3i7bCc"/>
+</div>
+<div class="flex-1 p-6 md:p-8 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-4">
+<span class="text-xs font-black uppercase text-blue-600 bg-blue-50 dark:bg-blue-900/20 px-2 py-1 rounded">Athletics</span>
+<span class="text-xs text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                                Oct 21, 2024
+                            </span>
+</div>
+<h3 class="text-xl md:text-2xl font-black mb-3 group-hover:text-primary transition-colors leading-tight">
+                            State Finals: Lakeview Eagles Advance
+                        </h3>
+<p class="text-slate-600 dark:text-slate-400 line-clamp-2 mb-6">
+                            Our varsity track team has secured a place in the state finals after a record-breaking performance at the regional qualifiers last Saturday.
+                        </p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female athletic director" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9eFz3m4RWZgFN_hzXivYV2KZoXb6Od54DYvXANM0cERfT0XcE-qN2hPKo8yHOShx9B2JhuZ1BCHhCwLP1g8IUPdSQ3X_Myegm9-zKwk5RLv-7BHrUQha6EexHpt7H4HjLFNipTyjTxJ0BDz1nqCIpBgnJAyfR-opPzeh6vC50m512LKMtsq6T1dyQxpxr5ZhACv1PTwN2Mefw_05fEmk-P-7SRQKFlBw5Q33WHzg2ESywk-KKXFVW4_rSA_6XIt6WPix7OKex6AU"/>
+</div>
+<span class="text-xs font-semibold">Coach Sarah Jenkins</span>
+</div>
+<a class="text-primary font-bold text-sm flex items-center gap-1 group/link" href="#">
+                                Read More
+                                <span class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform">chevron_right</span>
+</a>
+</div>
+</div>
+</article>
+<!-- News Item 3 (Small variant) -->
+<article class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-slate-900/40 rounded-xl p-6 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 mb-4">
+<span class="text-[10px] font-black uppercase text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded">Academics</span>
+<span class="text-[10px] text-slate-500">Oct 19, 2024</span>
+</div>
+<h4 class="font-bold text-lg mb-2 leading-tight">New AP Curriculum Guidelines Released</h4>
+<p class="text-sm text-slate-500 mb-4">Updates to the 2025 Advanced Placement testing schedule and registration deadlines are now available for viewing.</p>
+<button class="text-primary text-xs font-bold flex items-center gap-1 uppercase tracking-wider">
+                            Download PDF <span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+<div class="bg-white dark:bg-slate-900/40 rounded-xl p-6 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 mb-4">
+<span class="text-[10px] font-black uppercase text-purple-600 bg-purple-50 dark:bg-purple-900/20 px-2 py-0.5 rounded">Student Life</span>
+<span class="text-[10px] text-slate-500">Oct 15, 2024</span>
+</div>
+<h4 class="font-bold text-lg mb-2 leading-tight">Club Fair: 40+ New Organizations</h4>
+<p class="text-sm text-slate-500 mb-4">From Robotics to Chess, find your community at our annual fall club fair happening this Wednesday in the courtyard.</p>
+<button class="text-primary text-xs font-bold flex items-center gap-1 uppercase tracking-wider">
+                            Full List <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</article>
+<!-- Load More -->
+<div class="flex justify-center pt-4">
+<button class="flex items-center gap-2 px-8 py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-xl font-black text-slate-700 dark:text-slate-300 transition-all">
+                        Load More News
+                        <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Professional Footer -->
+<footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 mt-20 pt-16 pb-8">
+<div class="w-full px-6 lg:px-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<div class="p-1.5 bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined block text-2xl">school</span>
+</div>
+<span class="text-xl font-black tracking-tight uppercase">Lakeview</span>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed mb-6">
+                        Empowering students through academic rigor, athletic excellence, and a supportive community environment for over 50 years.
+                    </p>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">group</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-black text-sm uppercase tracking-widest mb-6 text-slate-400">Quick Links</h4>
+<ul class="space-y-4 text-sm font-semibold">
+<li><a class="hover:text-primary transition-colors" href="#">Staff Directory</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">School Board</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Term Dates</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Career Opportunities</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-sm uppercase tracking-widest mb-6 text-slate-400">Resources</h4>
+<ul class="space-y-4 text-sm font-semibold">
+<li><a class="hover:text-primary transition-colors" href="#">Student Handbook</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Safety Protocols</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Financial Aid</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-sm uppercase tracking-widest mb-6 text-slate-400">Contact Us</h4>
+<ul class="space-y-4 text-sm">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="font-medium">123 Academy Lane, <br/>Lakeview, WA 98101</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary">call</span>
+<span class="font-medium">(555) 123-4567</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="font-medium">office@lakeview.edu</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-100 dark:border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-bold uppercase tracking-tighter">
+<p>© 2024 Lakeview Academy. All Rights Reserved.</p>
+<div class="flex gap-8">
+<a class="hover:text-slate-900 dark:hover:text-white" href="#">Terms</a>
+<a class="hover:text-slate-900 dark:hover:text-white" href="#">Privacy</a>
+<a class="hover:text-slate-900 dark:hover:text-white" href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

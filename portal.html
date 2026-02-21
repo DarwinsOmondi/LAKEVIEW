@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Staff Portal Registration - Lakeview Academy</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="lakeview.js"></script>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center p-4">
+<!-- Main Registration Container -->
+<div class="w-full max-w-[1100px] flex flex-col md:flex-row bg-white dark:bg-[#2d1d15] rounded-xl shadow-2xl overflow-hidden border border-primary/10">
+<!-- Left Side: Branding & Image (Visual Hook) -->
+<div class="hidden md:flex md:w-1/2 relative bg-[#221610] items-center justify-center p-12 overflow-hidden">
+<!-- Decorative Background Pattern -->
+<div class="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+<div class="relative z-10 flex flex-col items-center">
+<a href="index.html" class="text-center group">
+<!-- Placeholder for Logo -->
+<div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center mb-8 shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
+<span class="material-symbols-outlined text-white text-5xl">school</span>
+</div>
+<h1 class="text-white text-4xl font-black tracking-tight leading-tight mb-4 transition-colors group-hover:text-primary">LAKEVIEW ACADEMY</h1>
+</a>
+<p class="text-white/70 text-lg font-light max-w-sm text-center">Join the faculty portal to manage your courses, students, and academic resources in one secure location.</p>
+<div class="mt-12 w-full h-64 bg-cover bg-center rounded-xl border border-white/10 shadow-inner" data-alt="Modern professional office building interior with clean lines" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOchl-uChbnM8aDGBOUfpvvEcO9rQAWIJ7-PDC-OStFlA1DC0-C6frs3kmpf2huoVWILxNGBJyVkS_lF53tSFwFInGi9Xz6uP0UQ6oJzRea_xP5ElABY-7MrEcpXqDje6vJvImKgsmQEvnRin1HXtFvziOAsJxPUCOKgUABN1-Crtq_3o8a74PJ5ODsfetlp0iHhViu7YdKpFTVi3fAnn-dlROQKTaCvl-IpOKi2Fcn6skZqvz8VvpTaCxBBUgDC5DYHDRPBHaTbY");'>
+</div>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center relative">
+<a class="absolute top-6 right-6 text-sm font-bold text-gray-400 hover:text-primary flex items-center gap-1 transition-colors" href="index.html">
+<span class="material-symbols-outlined text-lg">home</span>
+                    Home
+                </a>
+<!-- Header Section -->
+<div class="mb-8">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-sm font-bold">shield</span>
+<span class="text-xs font-bold uppercase tracking-widest">Secure Staff Access</span>
+</div>
+<h2 class="text-3xl font-black text-gray-900 dark:text-white mb-2">Create Account</h2>
+<p class="text-gray-500 dark:text-gray-400">Please enter your professional details to register.
+    Exit if not a part of the School Administration.
+</p>
+</div>
+<!-- Form -->
+<form id="registrationForm" class="space-y-5" onsubmit="handleRegister(event)">
+<!-- Full Name Field -->
+<div>
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Full Name</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">person</span>
+</div>
+<input id="fullName" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="Johnathan Doe" type="text" required/>
+</div>
+</div>
+<!-- Email Address Field -->
+<div>
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Email Address</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">mail</span>
+</div>
+<input id="email" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="j.doe@lakeview.edu" type="email" required/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Create Password</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">lock</span>
+</div>
+<input id="password" class="w-full pl-11 pr-12 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="••••••••" type="password" required/>
+<button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-primary transition-colors">
+<span id="eyeIcon" class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Phone Number & Staff ID (Grid) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+<div>
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Phone Number</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">phone</span>
+</div>
+<input id="phone" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Staff ID</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">badge</span>
+</div>
+<input id="staffId" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="LV-XXXXX" type="text"/>
+</div>
+</div>
+</div>
+<!-- Consent & Terms -->
+<div class="flex items-start gap-3 py-2">
+<input class="mt-1 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="terms" type="checkbox"/>
+<label class="text-sm text-gray-500 dark:text-gray-400 leading-snug" for="terms">
+                        I agree to the <a class="text-primary hover:underline font-medium" href="#">Terms of Service</a> and <a class="text-primary hover:underline font-medium" href="#">Privacy Policy</a> regarding academy data handling.
+                    </label>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg shadow-lg shadow-primary/25 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">how_to_reg</span>
+                    Register Account
+                </button>
+</form>
+<!-- Footer Navigation -->
+<div class="mt-10 pt-6 border-t border-gray-100 dark:border-white/5 text-center">
+<p class="text-gray-500 dark:text-gray-400 text-sm">
+                    Already registered? 
+                    <a class="text-primary font-bold hover:underline ml-1 inline-flex items-center gap-1" href="admin.html">
+                        Login here <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</p>
+</div>
+</div>
+</div>
+<!-- Security Badge (Floating) -->
+<div class="fixed bottom-6 right-6 hidden sm:flex items-center gap-3 bg-white dark:bg-background-dark p-3 rounded-full shadow-xl border border-gray-100 dark:border-white/10">
+<div class="w-10 h-10 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="pr-4">
+<p class="text-[10px] uppercase tracking-widest font-black text-gray-400 leading-none">Status</p>
+<p class="text-sm font-bold text-gray-700 dark:text-gray-200">Encryption Active</p>
+</div>
+</div>
+
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.textContent = 'visibility_off';
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.textContent = 'visibility';
+        }
+    }
+
+    async function handleRegister(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const fullName = document.getElementById('fullName').value;
+        const phone = document.getElementById('phone').value;
+        const staffId = document.getElementById('staffId').value;
+
+        // Store email for OTP page
+        localStorage.setItem('pendingEmail', email);
+        localStorage.setItem('pendingName', fullName);
+
+        try {
+            const { data, error } = await sb.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    // This will associate the metadata with the user when they are created.
+                    // Note: This requires "Enable Implicit Sign-ups" to be active in your Supabase Auth settings if the user does not exist.
+                    data: { full_name: fullName, phone: phone, staff_id: staffId },
+                }
+            });
+
+            if (error) throw error;
+
+            // Log system activity
+            const activities = JSON.parse(localStorage.getItem('lakeview_activities') || '[]');
+            activities.unshift({
+                user: fullName,
+                action: 'New Staff Registration',
+                date: new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true }),
+                status: 'Pending'
+            });
+            localStorage.setItem('lakeview_activities', JSON.stringify(activities));
+
+            alert('A verification code has been sent to your email.');
+            window.location.href = 'otp-verification.html';
+        } catch (error) {
+            alert('Error sending verification code: ' + error.message);
+        }
+    }
+</script>
+</body></html>
