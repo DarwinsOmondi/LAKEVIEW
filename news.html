@@ -24,8 +24,7 @@
 </div>
 <h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white uppercase">Lakeview Academy</h1>
 </a>
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-base font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
+<nav class="hidden sfont-semibold hover:text-primary transition-colors" href="index.html">Home</a>
 <a class="text-base font-semibold hover:text-primary transition-colors" href="admin.html">Admin</a>
 <a class="text-base font-semibold hover:text-primary transition-colors" href="catalog.html">Course Catalog</a>
 <a class="text-base font-semibold text-primary border-b-2 border-primary pb-0.5" href="news.html">News</a>
@@ -34,19 +33,34 @@
 <a class="text-base font-semibold hover:text-primary transition-colors" href="contact.html">Contact</a>
 </nav>
 </div>
-<div class="flex flex-1 items-center justify-end gap-4 max-w-md">
-<div class="relative w-full hidden sm:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<div class="flex flex-1 items-center justify-end gap-2 max-w-md">
+<div class="relative w-full hidden sm:block">-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
 <input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary transition-all" placeholder="Search announcements..." type="text"/>
 </div>
-<a href="portal.html" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 whitespace-nowrap">
-                        Parent Portal
-                    </a>
-<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden ring-2 ring-primary/20">
+<a href="portal.html" class="hidden lg:block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 whitespace-nowrap">
+     
+<div class="hidden lg:block w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden ring-2 ring-primary/20">
 <img class="w-full h-full object-cover" data-alt="User profile picture in a circular frame" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJnL1ORV1FWU9OxecsUU52kMYlBnOW-bicF_G1yXwhbhuHT-x7GoOdlbanNghWWkbB7JVE5JNWNE7y1r8p_IgZwkN3tAT3ASiHc7nN33uNKqk9jsjWT6SzFH0p56ZV2d4INlsbJ4-NIb0SlFlNi1L6P4K2kOkb_Y4T3rFjSjiJpP1dfAzfb-W8zLpEIaip65gNebK0SYgWr95ae6hCGE3q2bx-sT5yJCYdeOD3qgs8rjLdn08GE4Pl7_LNYM3csnQ6v8vcEhnFp_s"/>
 </div>
+<button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" class="lg:hidden p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+<span class="sr-only">Open main menu</span>
+<span class="material-symbols-outlined">menu</span>
+</button>
 </div>
 </div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800">
+<nav class="px-4 pt-2 pb-4 space-y-1">
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="index.html">Home</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="admin.html">Admin</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="catalog.html">Course Catalog</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium text-primary bg-primary/10" href="news.html">News</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="about.html">About</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="galery.html">Gallery</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="contact.html">Contact</a>
+<a class="block mt-2 px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90" href="portal.html">Parent Portal</a>
+</nav>
 </div>
 </header>
 <main class="flex-grow">

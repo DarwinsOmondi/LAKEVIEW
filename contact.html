@@ -22,7 +22,7 @@
 </div>
 <h1 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Lakeview Academy</h1>
 </div>
-<nav class="hidden md:flex items-center gap-8">
+<nav class="hidden lg:flex items-center gap-8">
 <a class="text-sm font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="index.html">Home</a>
 <a class="text-sm font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="admin.html">Admin</a>
 <a class="text-sm font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="catalog.html">Course Catalog</a>
@@ -31,11 +31,29 @@
 <a class="text-sm font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="galery.html">Gallery</a>
 <a class="text-sm font-semibold text-primary" href="contact.html">Contact</a>
 </nav>
-<div class="flex items-center gap-4">
-<a href="portal.html" class="rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-transform hover:scale-105 active:scale-95">
+<div class="flex items-center gap-2">
+<a href="portal.html" class="hidden lg:block rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-transform hover:scale-105 active:scale-95">
                     Portal
                 </a>
+<!-- Hamburger Menu Button -->
+<button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" class="lg:hidden p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+<span class="sr-only">Open main menu</span>
+<span class="material-symbols-outlined">menu</span>
+</button>
 </div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden lg:hidden">
+<nav class="px-4 pt-2 pb-4 space-y-1">
+<a class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary hover:bg-primary/10 transition-colors" href="index.html">Home</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary hover:bg-primary/10 transition-colors" href="admin.html">Admin</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary hover:bg-primary/10 transition-colors" href="catalog.html">Course Catalog</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary hover:bg-primary/10 transition-colors" href="news.html">News</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary hover:bg-primary/10 transition-colors" href="about.html">About</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary hover:bg-primary/10 transition-colors" href="galery.html">Gallery</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium text-primary bg-primary/10" href="contact.html">Contact</a>
+<a class="block mt-2 px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90" href="portal.html">Portal</a>
+</nav>
 </div>
 </header>
 <main class="mx-auto max-w-7xl px-6 py-12 md:py-20">

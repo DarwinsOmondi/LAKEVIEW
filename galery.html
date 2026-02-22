@@ -24,7 +24,7 @@
 </div>
 <h2 class="text-2xl font-extrabold tracking-tight">Lakeview <span class="text-primary">Academy</span></h2>
 </a>
-<nav class="hidden md:flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-6">
 <a class="text-base font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
 <a class="text-base font-semibold hover:text-primary transition-colors" href="admin.html">Admin</a>
 <a class="text-base font-semibold hover:text-primary transition-colors" href="catalog.html">Course Catalog</a>
@@ -34,16 +34,34 @@
 <a class="text-base font-semibold hover:text-primary transition-colors" href="contact.html">Contact</a>
 </nav>
 </div>
-<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
 <div class="hidden lg:flex relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
 <input class="pl-10 pr-4 py-2 bg-slate-100 dark:bg-white/5 border-none rounded-xl text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search gallery..." type="text"/>
 </div>
-<a href="portal.html" class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all transform active:scale-95 shadow-lg shadow-primary/20">
+<a href="portal.html" class="hidden lg:block bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all transform active:scale-95 shadow-lg shadow-primary/20">
                         Portal
                     </a>
+<!-- Hamburger Menu Button -->
+<button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" class="lg:hidden p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+<span class="sr-only">Open main menu</span>
+<span class="material-symbols-outlined">menu</span>
+</button>
 </div>
 </div>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-primary/20">
+<nav class="px-4 pt-2 pb-4 space-y-1">
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="index.html">Home</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="admin.html">Admin</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="catalog.html">Course Catalog</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="news.html">News</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="about.html">About</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium text-primary bg-primary/10" href="galery.html">Gallery</a>
+<a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-primary/10 transition-colors" href="contact.html">Contact</a>
+<a class="block mt-2 px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90" href="portal.html">Portal</a>
+</nav>
 </div>
 </header>
 <main class="flex-grow">

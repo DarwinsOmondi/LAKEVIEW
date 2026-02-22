@@ -27,3 +27,17 @@ const supabaseKey = 'sb_publishable_7Lxc83XanPdTuz0GzhPAgQ__bucoIXW'; // The API
 
 // Create a single supabase client for interacting with your database
 const sb = typeof supabase !== 'undefined' ? supabase.createClient(supabaseUrl, supabaseKey) : null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = mobileMenuButton ? mobileMenuButton.querySelector('span.material-symbols-outlined') : null;
+
+    if (mobileMenuButton && mobileMenu && menuIcon) {
+        mobileMenuButton.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            menuIcon.textContent = isHidden ? 'menu' : 'close';
+            mobileMenuButton.setAttribute('aria-expanded', !isHidden);
+        });
+    }
+});
