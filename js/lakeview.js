@@ -41,18 +41,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Admin & Portal Dashboard Logic ---
-
     // Admin Login Logic
     const adminLoginForm = document.getElementById('admin-login-form');
     if (adminLoginForm) {
-        adminLoginForm.addEventListener('submit', (e) => {
+        adminLoginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // In a real app, you'd validate credentials here.
-            document.getElementById('admin-login-view').classList.add('hidden');
-            const dashboard = document.getElementById('admin-dashboard-view');
-            dashboard.classList.remove('hidden');
-            loadAdminDashboard();
+            const email = document.getElementById('admin-login-id').value;
+            const password = document.getElementById('admin-login-password').value;
+            const button = adminLoginForm.querySelector('button[type="submit"]');
+            
+            button.disabled = true;
+            button.innerHTML = `<span class="material-symbols-outlined animate-spin">progress_activity</span> Logging In...`;
+
+            try {
+                const { data, error } = await sb.auth.signInWithPassword({
+                    email: email,
+                    password: password,
+                });
+
+                if (error) throw error;
+
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                await loadAdminDashboard();
+
+            } catch (error) {
+                alert('Login Failed: ' + error.message);
+            } finally {
+                button.disabled = false;
+                button.innerHTML = `<span class="material-symbols-outlined">login</span> Access Dashboard`;
+            }
+        });
+    }
+
+    // Admin Logout Logic
+    const adminLogoutButton = document.getElementById('admin-logout-button');
+    if (adminLogoutButton) {
+        adminLogoutButton.addEventListener('click', async () => {
+            await sb.auth.signOut();
+            document.getElementById('admin-dashboard-view').classList.add('hidden');
+            document.getElementById('admin-login-view').classList.remove('hidden');
+            alert('You have been logged out.');
         });
     }
 
@@ -69,11 +98,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to load and render admin dashboard data
-    function loadAdminDashboard() {
+    async function loadAdminDashboard() {
+        // Fetch and display user info
+        if (!sb) return;
+        
+        const { data: { user } } = await sb.auth.getUser();
+        if (user) {
+            const userNameEl = document.getElementById('admin-user-name');
+            if (userNameEl) {
+                userNameEl.textContent = user.user_metadata?.full_name || user.email;
+            }
+        }
+
+        // Load data from localStorage (as before)
         const notifications = JSON.parse(localStorage.getItem('lakeview_notifications') || '[]');
         renderNotifications(notifications);
         renderActivities();
-        
+
         const inquiryStat = document.getElementById('stat-inquiries');
         if(inquiryStat) {
             inquiryStat.textContent = notifications.length;
