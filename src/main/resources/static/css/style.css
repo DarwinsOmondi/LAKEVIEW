@@ -1,0 +1,70 @@
+html {
+    font-size: 17px; /* Increased base font size for better readability */
+}
+
+body {
+    font-family: 'Public Sans', sans-serif;
+    min-height: max(884px, 100dvh);
+}
+
+/* From index.html */
+.hero-gradient {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523050335392-93851179ae22?auto=format&fit=crop&q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+}
+
+/* From contact.html, catalog.html, portal.html */
+.material-symbols-outlined {
+    font-size: 20px; /* Reduced default icon size */
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+/* From galery.html */
+.masonry-grid {
+    column-count: 1;
+    column-gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .masonry-grid {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    .masonry-grid {
+        column-count: 3;
+    }
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+}
+
+/* Admin portal card styles (matches site's brown theme) */
+.admin-portal-card {
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.25));
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.admin-portal-hero {
+    background-image: linear-gradient(rgba(34,22,16,0.5), rgba(34,22,16,0.6)), url('https://images.unsplash.com/photo-1523050335392-93851179ae22?auto=format&fit=crop&q=80&w=1600');
+}
+
+.bg-admin-card {
+    background: linear-gradient(180deg, rgba(45,29,21,0.98), rgba(34,22,16,0.98));
+}
+
+/* Small visual tweaks for admin inputs when using our custom card */
+.admin-portal-card input[type="text"],
+.admin-portal-card input[type="password"],
+.admin-portal-card input[type="email"] {
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06) inset;
+}
+
+.admin-portal-card .material-symbols-outlined {
+    font-size: 22px;
+}

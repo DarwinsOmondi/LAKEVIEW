@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Lakeview Academy</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./js/lakeview.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="./css/style.css" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+
+<!-- Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="bg-primary p-2 rounded-lg text-white">
+                <span class="material-symbols-outlined text-3xl">school</span>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Lakeview Academy</h1>
+        </div>
+        <nav class="hidden lg:flex items-center gap-8">
+            <a class="nav-link text-sm font-semibold text-primary cursor-pointer" onclick="navigateTo('home')">Home</a>
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('admin')">Admin</a>
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('catalog')">Course Catalog</a>
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('news')">News</a>
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('about')">About</a>
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('gallery')">Gallery</a>
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('contact')">Contact</a>
+        </nav>
+        <div class="flex items-center gap-2">
+            <a class="hidden lg:block bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-primary/20 cursor-pointer" onclick="navigateTo('portal')">Portal</a>
+            <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" class="lg:hidden p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                <span class="sr-only">Open main menu</span>
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden">
+        <nav class="px-4 pt-2 pb-4 space-y-1">
+            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-primary bg-primary/10 cursor-pointer" onclick="navigateTo('home')">Home</a>
+            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('admin')">Admin</a>
+            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('catalog')">Course Catalog</a>
+            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('news')">News</a>
+            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('about')">About</a>
+            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('gallery')">Gallery</a>
+            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('contact')">Contact</a>
+            <a class="nav-link block mt-2 px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90 cursor-pointer" onclick="navigateTo('portal')">Portal</a>
+        </nav>
+    </div>
+</header>
+
+<main class="flex-grow">
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page-content">
+        <!-- Hero Section -->
+        <section class="relative w-full h-[600px] flex items-center hero-gradient" data-alt="Modern university campus building with students walking">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="max-w-2xl space-y-6">
+                    <div class="inline-block px-4 py-1.5 bg-primary/20 border border-primary/30 rounded-full">
+                        <span class="text-primary text-xs font-bold uppercase tracking-widest">Enrolling Now for 2026</span>
+                    </div>
+                    <h1 class="text-6xl md:text-7xl font-black text-white leading-[1.1] tracking-tight">
+                        Learn on <br/><span class="text-primary underline decoration-white/20">the GO</span>
+                    </h1>
+                    <p class="text-lg text-slate-200 font-medium max-w-lg leading-relaxed">Experience the flexibility of modern education with our expert-led courses. Access your classroom from anywhere in the world.</p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a onclick="navigateTo('portal')" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2 cursor-pointer">
+                            Online classes <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                        <a onclick="navigateTo('portal')" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2 cursor-pointer">
+                            Join us <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                        <a onclick="navigateTo('catalog')" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl font-bold text-lg transition-all cursor-pointer">
+                            View Courses
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Bar Section -->
+        <section class="max-w-4xl mx-auto -mt-12 relative z-10 px-6">
+            <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-2xl border border-slate-200/50 dark:border-slate-800 flex flex-col md:flex-row gap-4">
+                <div class="flex-grow relative">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input class="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border-none rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 text-base font-medium placeholder:text-slate-500" placeholder="Quick Search" type="text"/>
+                </div>
+                <button class="bg-slate-900 dark:bg-primary text-white px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity">Search</button>
+            </div>
+        </section>
+
+        <!-- Information Hub / Features Grid -->
+        <section class="max-w-7xl mx-auto px-6 py-24">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div class="space-y-2">
+                    <h2 class="text-primary font-bold tracking-widest uppercase text-sm">Information Hub</h2>
+                    <h3 class="text-4xl font-extrabold text-slate-900 dark:text-white">Start your journey today</h3>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 max-w-md">Explore our comprehensive resources designed to help you navigate your academic path with ease and confidence.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/5">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">rocket_launch</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Get Started</h4>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">New to Lakeview? Follow our step-by-step onboarding guide to set up your student profile and access learning tools.</p>
+                    <a class="inline-flex items-center font-bold text-primary group-hover:gap-3 transition-all cursor-pointer" onclick="navigateTo('about')">
+                        Learn more <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="group bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/5">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">assignment_ind</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Admissions</h4>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Ready to apply? Discover our admission requirements, application deadlines, and scholarship opportunities for all programs.</p>
+                    <a class="inline-flex items-center font-bold text-primary group-hover:gap-3 transition-all cursor-pointer" onclick="navigateTo('portal')">
+                        Apply Now <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="group bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:shadow-xl hover:shadow-primary/5">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">quiz</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">FAQ</h4>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Have questions? Find quick answers about course enrollment, technical support, tuition fees, and campus life.</p>
+                    <a class="inline-flex items-center font-bold text-primary group-hover:gap-3 transition-all cursor-pointer" onclick="navigateTo('contact')">
+                        Support Center <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="bg-primary py-20">
+            <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
+                <h2 class="text-4xl md:text-5xl font-black text-white leading-tight">Come study with us</h2>
+                <p class="text-white/80 text-lg max-w-2xl mx-auto font-medium">Join our vibrant community of over 15,000 learners and world-class educators today. Take the first step towards your future career.</p>
+                <div class="flex justify-center pt-4">
+                    <a onclick="navigateTo('portal')" class="bg-white text-primary hover:bg-slate-100 px-10 py-4 rounded-xl font-black text-lg transition-all shadow-2xl shadow-black/10 cursor-pointer">Join us now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- News / Gallery Preview -->
+        <section class="max-w-7xl mx-auto px-6 py-24">
+            <div class="flex items-center justify-between mb-12">
+                <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">Latest from Campus</h3>
+                <a class="text-primary font-bold flex items-center gap-2 hover:underline cursor-pointer" onclick="navigateTo('gallery')">
+                    View Gallery <span class="material-symbols-outlined">grid_view</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="aspect-square rounded-2xl overflow-hidden relative group">
+                    <img alt="Students studying" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN1JwvNLJyHRXvUiLP-oB4xfOXmjXkZE5o_r5rqGwelYWMxMSUNuJCuEGCBmh-xz67AHZvsJD3HsjScmtJ4q_qXyWxGlqAsqomAsqVErlcxc-KNr6CsNrGSJNV3-BOMPAKPXveYXYIVxHHx2galLBT7QpX8DDM1r57ssnqcnWMlFvYjVFUXbSRgbPFzPzI12KypNqSC6KOnZoL2F-OZTG5QVvDaU1PJ-5MNsf7ZyPxYsY7TFdVaEEEs-4N2fLAvj7Tt2gji9C3b50"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white text-sm font-bold">Collaborative Spaces</span>
+                    </div>
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden relative group">
+                    <img alt="Campus building" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE2IqOMkwG9AhwjUp3jaeo4xTGYxFsyp561CXhCsdBG2RoyvbXb5zdc7QuVZdCLDkK7fn_8OluUtL5FjCKhA5O6dkZT0rsLjuVk64BPKyCbJom6RB5kFOdDU-2CYByr_KLuKwz-JruNkavX2NKGCw-VPzKsC0PpYGV4n1W41eH_suYL2xpHAVj1tEuXGlS18nNOzH4NHKa9A0ewVegqBSSNRL6i-waubtCIY-AWJCLoiaqlY-r0aRD3-ROUy5ymN188pN88xf3Tvw"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white text-sm font-bold">Heritage Hall</span>
+                    </div>
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden relative group">
+                    <img alt="Student in lab" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaU2NZMbUYsdruFESBgXzD8deqwDgkAd8jnvwfCdXbc3hddRcLK1oq_SGuOWeYoa3JrONzRB6HryZeoafiltxWb3VIs2S4LydR5Lnr5tua-7T2v29W8VhJxQLY-KsjZ63SGmbV_-D-h_tS1azQ7yeIXTY1c6yY2tX7cL4CCHQud07Pc5g7p3NxMer8VFo8UcqXxlti4-hSQ3eOJWOSsN7DhYIjcrA5xQoopHdZesoBUXP61JYwAA4FRdNrIlXhlg1kaotO9Ib1i_c"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white text-sm font-bold">Modern Laboratories</span>
+                    </div>
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden relative group">
+                    <img alt="Lecture hall" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmSXhqdGJpVVnyoFzu2m_5vT7i84q_KqQ1Q5qvLtKFH0GLak1nxBbpobsPQKnI62CP1B9r4mefs-WgRgs9GCdWcwBQrhyNnVuC2leupspHo5MrmguNJTPpFq89GNh62Vp1wx-aZcF1ZsAnILshgERI35Sphey-muBKnne9ZFEouZKXXwdQCr0mmY5jcDK14fvC9CO8fwB2vPNJPKHgrfmYQqrRffw1tnJRZDHZOIN7nT5ufSuN6Pmp9BS60LqfDKMhsn9brQz9Cl8"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white text-sm font-bold">Innovation Hub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="page-about" class="page-content hidden">
+        <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBj47ZqZENbGq_XhywMAYYEwTp6I4Rb6xhrO1ZfSIf0WVs_ODidPcap7epqcqSLgqjR52_sjqBWF_IJE2qBULpAzM4GbSAr9kqHOQVTyDfjb0nTcX5xmj8hmXz5P3IVXvyhlY5JkXjiJs34QpHj2FuheNimYfyTnG2UIrWVOnb1TATEFgFlHp-9HiWenZm3SM3v5xjVYuP1RwiqZJYCkWUsIBC_PKqMYy9nFx_SBpv2FR6k6af7sS1l9z7aMMU7GqJuhw-xsqDsIic');">
+                <div class="absolute inset-0 bg-gradient-to-r from-background-dark/90 via-background-dark/40 to-transparent"></div>
+            </div>
+            <div class="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6">
+                <div class="max-w-2xl space-y-6">
+                    <span class="inline-block rounded-full bg-primary/20 px-4 py-1.5 text-sm font-bold tracking-wider text-primary uppercase">Our Legacy</span>
+                    <h1 class="text-5xl font-black leading-tight text-white md:text-6xl lg:text-7xl">Empowering Minds, Building Community</h1>
+                    <p class="text-lg text-white/80 md:text-xl">Since 1984, Lakeview Academy has been a sanctuary for intellectual curiosity and character development in the heart of the valley.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Values -->
+        <section class="py-24 px-6 bg-white dark:bg-[#1a110c]">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-16 text-center">
+                    <h2 class="text-3xl font-bold md:text-4xl">Our Mission & Values</h2>
+                    <p class="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto italic">"To nurture the unique potential of every student through a rigorous academic foundation and a culture of mutual respect."</p>
+                </div>
+                <div class="grid gap-8 md:grid-cols-3">
+                    <div class="group flex flex-col items-center rounded-2xl bg-background-light dark:bg-background-dark p-8 text-center transition-all hover:-translate-y-2 hover:shadow-xl">
+                        <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">workspace_premium</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Academic Excellence</h3>
+                        <p class="text-gray-600 dark:text-gray-400">We push the boundaries of traditional education to prepare students for the complexities of the modern world.</p>
+                    </div>
+                    <div class="group flex flex-col items-center rounded-2xl bg-background-light dark:bg-background-dark p-8 text-center transition-all hover:-translate-y-2 hover:shadow-xl">
+                        <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">diversity_3</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Inclusive Community</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Diversity is our strength. We foster an environment where every voice is heard and every background is celebrated.</p>
+                    </div>
+                    <div class="group flex flex-col items-center rounded-2xl bg-background-light dark:bg-background-dark p-8 text-center transition-all hover:-translate-y-2 hover:shadow-xl">
+                        <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-3xl">psychology</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Lifelong Learning</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Education doesn't end at graduation. We instill a curiosity that drives our students to keep growing forever.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-6 bg-primary text-white">
+            <div class="mx-auto max-w-4xl text-center">
+                <h2 class="text-4xl font-black mb-8">Ready to join our community?</h2>
+                <p class="text-xl mb-12 opacity-90">We invite you to visit our campus and experience the Lakeview difference firsthand. Schedule a tour or start your application today.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a onclick="navigateTo('portal')" class="bg-white text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-opacity-90 transition-all shadow-xl cursor-pointer">Apply for Admission</a>
+                    <a onclick="navigateTo('contact')" class="border-2 border-white/40 bg-white/10 px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all cursor-pointer">Book a School Tour</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CATALOG PAGE -->
+    <div id="page-catalog" class="page-content hidden">
+        <!-- Hero Section -->
+        <section class="relative min-h-[450px] w-full overflow-hidden bg-slate-900">
+            <div class="absolute inset-0 bg-cover bg-center opacity-60" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDxmL2d5sY8pqVLDo6GxWQpbGKRLUGZnY_GDHY65cLjdZ9Hy6XuB0AcjOW33nG9KyQyeIMhPq5ZnDWXDK96kGnhOfTp8n3Afol0xrFDj3SMclD0vSD0czDzKGaFB4Q_eL0zx6iAudhM3t8eHFeS5LUQEFO4yjUBciOx7fF1hornW0EUIzxhsC9qti-Zch5JxVzh-P36dIR-0B8XpY6DVidxBKJ4c4SnoMfAHWIkkCukG1okm-CxZZkVitk41cfghr3Cd0TChBVxRbg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent"></div>
+            <div class="relative flex h-full min-h-[450px] flex-col justify-end px-6 pb-12 pt-20 text-left">
+                <div class="max-w-xl">
+                    <span class="mb-3 inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">Admissions Open 2024</span>
+                    <h1 class="text-4xl font-black leading-tight tracking-tight text-white md:text-5xl">Academic Excellence</h1>
+                    <p class="mt-4 text-lg font-normal text-slate-200 md:text-xl">Empowering future leaders through rigorous education and community at Lakeview Academy.</p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <button class="flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg transition-transform active:scale-95">Explore Programs</button>
+                        <button class="flex items-center justify-center rounded-xl bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition-transform active:scale-95">Virtual Tour</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Grid -->
+        <section class="grid grid-cols-1 gap-4 p-6 sm:grid-cols-3">
+            <div class="flex flex-col items-center justify-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-primary/5 dark:ring-primary/20">
+                <span class="text-3xl font-black text-primary">1,200+</span>
+                <p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Total Enrollment</p>
+            </div>
+            <div class="flex flex-col items-center justify-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-primary/5 dark:ring-primary/20">
+                <span class="text-3xl font-black text-primary">18</span>
+                <p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Avg. Class Size</p>
+            </div>
+            <div class="flex flex-col items-center justify-center rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-primary/5 dark:ring-primary/20">
+                <span class="text-3xl font-black text-primary">150+</span>
+                <p class="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">Academic Faculty</p>
+            </div>
+        </section>
+
+        <!-- Grade Levels -->
+        <section class="px-6 py-8">
+            <h2 class="mb-6 text-2xl font-bold tracking-tight">Upper School Grades</h2>
+            <div class="grid gap-6 sm:grid-cols-2">
+                <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10">
+                    <div class="h-32 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJW5l_0YIFZSMBL7AT6yzE44bpXEpJYqUYZLLnyjcRjjqm4AbAoVElNU5_1u4PMz-mS_NZP7IgIuXe8IglQCRMfMnm96oe9FCy10BLdYoSFNc2yArg6j0YAyZKO5IdqnmJ-91jimJEOboFLQFgqSjWXRv9UMOj2kyA1r2_0h4RmdIPAe-L4LwO1iDmEJ4boeu3uhI2d8SYXJ1x7bgdOt8CX9Q3hB9wfX6x4ZiInLEj9BrTZeGgIo4hKNY6XMknQ5Q7HhEGr7TrjH8');"></div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold">Grade 9</h3>
+                            <span class="text-sm font-medium text-slate-500">280 Students</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Foundation of advanced mathematics, global history, and biological sciences.</p>
+                        <button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary/5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white">
+                            View Curriculum
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10">
+                    <div class="h-32 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAz8UlLMbfbNNGBETgQ8AaPBqJfwXqKZvhEaABRT1kDDg_KMTPeH3Jj3NfYVURvcPpvFA0kIISIcoJjvs8w7U2fUicC2aBeXLxLWAlhcD0o7MoJQom5DJQHs9I1NX1q8HItUJ0bo5nJ1AxolxG8VOnQubUr_Y8wLZm6rMJfloms3kE5-pGcYWTVRaLy9GyIPulqoTGthLrjZK6QbcDF1dvi7Jluj5w_-NMPVRD0l6RgwNebW2GSpzMtEKXlbps7bwJYvEBhxcO2NI4');"></div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold">Grade 10</h3>
+                            <span class="text-sm font-medium text-slate-500">310 Students</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Focus on chemistry, world literature, and introduction to computer science.</p>
+                        <button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary/5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white">
+                            View Curriculum
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10">
+                    <div class="h-32 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoYCkN8l7jE6bnbfmYNpg8pXPATK2qyoZJowC5sfPSLDKCojAfibWFajctnzAo3YgbhSnUi-T7_6VEMQYL6riHjU9ygl4U3fRFBlz7bxVyhiKWUfmxo7N9k13syZEXZwv_lTZTrvNdofjorzBLHpxDaWx0bv0AcbTdV4s5_W-_UKIgQeRSlMoSqKt1upegV9h7t7fDUJKv-Hk3VDVvfmBcDXExRWPiqomlsBtumMz8BJrPdO5g_qgkC4sfQf3BbZBBari4qJ92rgs');"></div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold">Grade 11</h3>
+                            <span class="text-sm font-medium text-slate-500">295 Students</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Physics, pre-calculus, and humanities with AP course options available.</p>
+                        <button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary/5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white">
+                            View Curriculum
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 dark:bg-white/5 dark:ring-white/10">
+                    <div class="h-32 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpXAz2936IMZT1FYaz68oN0u7sxie374z-i4MqohvKTC-mRBjq4HEZd2MmFKI2r5TtmB0vQAIcNa1oLoPrr_XgQ9X55XiWbWImyEDOHRXttyFT18dWx2hkACg12cugEv901y5kc7-tgxZpCC5Wn-VMAkpdYox48gy8W7Vxsr1_-kP5aPwOi7BXBqf7nfaYq2LQZN6A4qjid2DgEsDe36TfTH5OpCYallFcAs20VqVlmGXS2oblkJTtEPts4d3IH5mP19AwmLFZFNg');"></div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold">Grade 12</h3>
+                            <span class="text-sm font-medium text-slate-500">315 Students</span>
+                        </div>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Capstone projects, university preparation, and advanced research seminars.</p>
+                        <button class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary bg-primary/5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white">
+                            View Curriculum
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="px-6 py-16 text-center">
+            <h2 class="text-3xl font-black tracking-tight">Join our community</h2>
+            <p class="mx-auto mt-4 max-w-md text-slate-600 dark:text-slate-400">Start your journey towards academic excellence. Applications for the next fall semester are now being accepted.</p>
+            <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+                <button class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-bold text-white shadow-lg shadow-primary/30 transition-all hover:brightness-110 active:scale-95">
+                    <span class="material-symbols-outlined">download</span>
+                    Download Prospectus
+                </button>
+                <button class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-8 py-4 text-base font-bold text-white transition-all dark:bg-white dark:text-slate-900 active:scale-95 cursor-pointer" onclick="navigateTo('contact')">
+                    <span class="material-symbols-outlined">calendar_today</span>
+                    Visit Campus
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- GALLERY PAGE -->
+    <div id="page-gallery" class="page-content hidden">
+        <div class="w-full px-6 lg:px-10 py-12">
+            <!-- Breadcrumbs & Hero -->
+            <div class="mb-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div class="max-w-2xl">
+                        <h1 class="text-5xl font-black tracking-tight mb-4">Life at <span class="text-primary">Lakeview</span></h1>
+                        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Explore our vibrant campus, state-of-the-art facilities, and student achievements through our visual gallery. Witness the moments that define our community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry Gallery -->
+            <div class="masonry-grid">
+                <div class="masonry-item group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-white/5 transition-transform duration-500 hover:-translate-y-2">
+                    <img alt="Students walking on campus green space" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfoX1krPlX_8R3wXv3U5hPR1CMQlKwfAJHHyFEoZJWz8B7DV1Muup73Ph8Z4mZo92eYPP5AMuoHiomjs4gjMfWXCqTWo2BRAjm7c6OaVhpIpVc1BLqpcgsGwbzt0Cy2XLJUu3sIO6SdKCFKFJZapsCsZlpw8iFHfUEbgWOMXw8ygYRsR8vLWayYVqfgB8u8apIMgKEl5WGcAI8FiBSKcuk979oH5oDgKb6mIWzkFF-Bc3Z3p7TQHfVies59r-N4MXo-u9B8_nSjuI"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Campus</p>
+                        <h3 class="text-white font-bold text-lg mb-4">Historic Main Hall West Wing</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white/70 text-sm">Sept 2023</span>
+                            <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined">zoom_in</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-white/5 transition-transform duration-500 hover:-translate-y-2">
+                    <img alt="Close up of science lab experiment" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8RJAVSyx39UzIogsg7wJltABM5EYxvolGSAxIITiL7IzSaiAkBa3y0jRZ-kHdJBM7trl7dJrHu7TKf3bTYDYH8D7T6AJWQTdAIPaATo689-I0eZUq2l0oROqqPmRCaEXM_-41WR7YHOb07pGgozO8i3A-jSxzJqgtatjLlKm_8X0wlxRi4hX1KNWOHnEldrPhdqd-QKlbGaoZzNFpGffpKUMKy1WAJZ8SSvX-BpGHrTMbSyzNzX1TKr31KaTFqpEvW-oQvCn6mXM"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Academics</p>
+                        <h3 class="text-white font-bold text-lg mb-4">Advanced Chemistry Lab</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white/70 text-sm">Oct 2023</span>
+                            <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined">zoom_in</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-white/5 transition-transform duration-500 hover:-translate-y-2">
+                    <img alt="Basketball game in progress" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1zX4-Xx4sNMrX09vaGV-VZeazDzqxY2l7LQBHwdF-I0rVcz0lCPIfsVr-SstBPgWCos9amG_l_RVt4EAY94tsZDiUW9TDZyX7Gfr1PEnuW84plToii2D5IHe7e4npG8BB64JijKRXWfTz_kXv6Ok311qOmIwESLh6YiGhFbb8S-l3hOV3kDqf3DttSy-HwGR6npbilzv3v1sSrBcJGFWsu_SUlUQgsXNmWnAQbarm-fQdPtwOAAiFni7xPT9VTSCMjTlZpwuFt1U"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Sports</p>
+                        <h3 class="text-white font-bold text-lg mb-4">Varsity Basketball Finals</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white/70 text-sm">Nov 2023</span>
+                            <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined">zoom_in</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-white/5 transition-transform duration-500 hover:-translate-y-2">
+                    <img alt="Art studio with student working" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGAR0MW-nvRc9WDDK0nIA59ME-cMdnCgstWV9I-Si1WY5P0tgTnOlMLaMDnG0JSvtMVvDIHmaMiW3BSpWjP37mk6gMlIcp3R4JNnWEA3nEyu42belGn86jCLXCtRHFQoA8M3jCQYWq5rnvPpaPJq3ib7xL0gkuZYJSjJ0zgwRdJHzNq2YTpwmzv0gH_xonuCQSiMP_KfA-rViPTO31JjqNi9sSuTMq3oKYI8aA7BSuQCm8rMfTzkAXW5pjYCsuY2G43wcA1iF5wAs"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Arts</p>
+                        <h3 class="text-white font-bold text-lg mb-4">Studio Workshop: Oils</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white/70 text-sm">Dec 2023</span>
+                            <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined">zoom_in</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-white/5 transition-transform duration-500 hover:-translate-y-2">
+                    <img alt="Graduation ceremony caps" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR3sLe0aecyBXUEOYtskJCqN_4laXJt4je995QAmh3KoYLRYlnOFwWv2ThQnwe6e1w4hJI7ID5wMVv4UJ-0pOMEaquG8m8LZWB7AyEf7DHsytLUrPoWR5f5yfILF7DI92XGnTirBOwtK5K6qoI-rlQLLcHp8Trn_MsG99Rjk6mOi_W01DONGAYQPJFNj-LFaevAjju_FzQMKR7nilLYeUmWEbZHgvTVFCq-92FdQp6N3Vv7w3m4HAPDdZyDq_kPdFITmz4vkYK8oY"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Events</p>
+                        <h3 class="text-white font-bold text-lg mb-4">Class of 2023 Graduation</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white/70 text-sm">June 2023</span>
+                            <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined">zoom_in</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-white/5 transition-transform duration-500 hover:-translate-y-2">
+                    <img alt="Library interior bookshelves" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1zqNkPR9XQyNR4PSYmlgLUO6UgWtpX9yqIIs4-DrgPBrLCBnYiO7om7qgL0EjjCIxCuOHj1DUuHLhxemsEWLMB-OVNPqvIK1l-QCLiKGnv5xmozPfD8zvkUSO7-I0btDazRHqklLTxKRe-0Leto3MBqF1W5IPaRrlJYR6EJ83wxgduXtSD3hD9f4ssttF4LpVdZIK9oVyWYqbfEC8kNOqPrM04qbR6QcVlzZT3xfpaJi50IbRSZgNyR6R9sKAvZaNh8dhem1GbY4"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Campus</p>
+                        <h3 class="text-white font-bold text-lg mb-4">The Central Library</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white/70 text-sm">Continuous</span>
+                            <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                                <span class="material-symbols-outlined">zoom_in</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Section -->
+            <div class="mt-16 flex flex-col items-center gap-6">
+                <button class="px-10 py-4 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-primary dark:hover:border-primary rounded-xl text-lg font-bold transition-all shadow-sm flex items-center gap-3">
+                    <span class="material-symbols-outlined">autorenew</span>
+                    Load More Memories
+                </button>
+                <p class="text-slate-500 text-sm">Showing 12 of 348 photos</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="page-contact" class="page-content hidden">
+        <main class="mx-auto max-w-7xl px-6 py-12 md:py-20">
+            <!-- Hero Section -->
+            <div class="mb-16 text-center">
+                <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-5xl">Get in Touch</h2>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Have questions? We're here to help. Reach out to us and we'll respond within 24 hours.</p>
+            </div>
+            <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+                <!-- Contact Information Column -->
+                <div class="space-y-8">
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1">
+                        <!-- Address Card -->
+                        <div class="group flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-primary/50 dark:border-gray-800 dark:bg-gray-900/50">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">location_on</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Our Campus</h3>
+                                <p class="mt-1 text-gray-600 dark:text-gray-400">123 Education Lane, Lakeside, CA 90210</p>
+                                <a class="mt-2 inline-flex items-center text-sm font-semibold text-primary hover:underline">
+                                    Get Directions <span class="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Phone Card -->
+                        <div class="group flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-primary/50 dark:border-gray-800 dark:bg-gray-900/50">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">call</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Phone Number</h3>
+                                <p class="mt-1 text-gray-600 dark:text-gray-400">Main Office: (555) 123-4567</p>
+                                <p class="text-sm text-gray-500">Mon - Fri, 8:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                        <!-- Email Card -->
+                        <div class="group flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-primary/50 dark:border-gray-800 dark:bg-gray-900/50">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">mail</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Email Address</h3>
+                                <p class="mt-1 text-gray-600 dark:text-gray-400">admissions@lakeviewacademy.edu</p>
+                                <p class="mt-1 text-gray-600 dark:text-gray-400">info@lakeviewacademy.edu</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Map Placeholder -->
+                    <div class="relative overflow-hidden rounded-xl border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-gray-900 h-64 md:h-80">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-200 dark:bg-gray-800" style='background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCWmq0GMYKU6x1fOYZegkTdb_TfOg5iMP_yyitQRIW2MFnwITiV8kYfSGfUkL1J5Qcy1zT2Jj7jAotaIk0Ol2MhAZ6lX486gLKA0MRwnZjYQApjlyJSRtE9VqPX6p3rtzHwGwHVz3DPNC-dUrt5vdRACAa1kTbJj7K_lhPYYTp7ytlE_luVh83PQ9hPcMEifdslsw2zxY4djX-BzI0mElOwNgnz5-qx-NIJ5TluQsNcGbYR1O-qxTlsWGN1j73hUjBP_SriLSnMnWs"); background-size: cover; background-position: center;'>
+                            <div class="flex flex-col items-center gap-2 rounded-lg bg-white/90 p-4 shadow-lg dark:bg-background-dark/90 backdrop-blur-sm">
+                                <span class="material-symbols-outlined text-primary text-4xl">location_on</span>
+                                <span class="font-bold text-gray-900 dark:text-white">Lakeview Academy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Form Column -->
+                <div class="rounded-2xl bg-white p-8 shadow-xl dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
+                    <form id="contactForm" class="space-y-6" onsubmit="handleContactSubmit(event)">
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div class="space-y-2">
+                                <label class="text-sm font-semibold text-gray-700 dark:text-gray-300" for="first-name">First Name</label>
+                                <input class="block w-full rounded-lg border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 focus:border-primary focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white" id="first-name" placeholder="Jane" type="text"/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-semibold text-gray-700 dark:text-gray-300" for="last-name">Last Name</label>
+                                <input class="block w-full rounded-lg border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 focus:border-primary focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white" id="last-name" placeholder="Doe" type="text"/>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300" for="email">Email Address</label>
+                            <input class="block w-full rounded-lg border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 focus:border-primary focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white" id="email" placeholder="jane@example.com" type="email"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300" for="subject">Inquiry Type</label>
+                            <select class="block w-full rounded-lg border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 focus:border-primary focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white" id="subject">
+                                <option>Admissions Inquiry</option>
+                                <option>General Information</option>
+                                <option>Athletics</option>
+                                <option>Employment</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-700 dark:text-gray-300" for="message">Message</label>
+                            <textarea class="block w-full rounded-lg border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 focus:border-primary focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white" id="message" placeholder="How can we help you?" rows="5"></textarea>
+                        </div>
+                        <button class="w-full rounded-lg bg-primary px-8 py-4 text-center text-base font-bold text-white shadow-lg transition-all hover:bg-primary/90 hover:shadow-primary/20 active:scale-[0.98]" type="submit">
+                            Send Message
+                        </button>
+                        <p class="text-center text-xs text-gray-500 dark:text-gray-400">
+                            By submitting this form, you agree to our <a class="underline" href="#">Privacy Policy</a>.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PLACEHOLDER PAGES for other sections -->
+    <!-- ADMIN PAGE -->
+    <div id="page-admin" class="page-content hidden bg-slate-50 dark:bg-black/20">
+        <!-- Admin Login View (New Layout) -->
+        <div id="admin-login-view" class="flex min-h-[80vh] items-center justify-center p-4">
+            <div class="w-full max-w-[1100px] flex flex-col md:flex-row bg-white dark:bg-[#2d1d15] rounded-xl shadow-2xl overflow-hidden border border-primary/10">
+                <!-- Left Side: Branding & Image -->
+                <div class="hidden md:flex md:w-1/2 relative bg-primary items-center justify-center p-12 overflow-hidden">
+                    <div class="absolute inset-0 z-0">
+                        <img alt="Background" class="w-full h-full object-cover opacity-30 mix-blend-overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvJdHedBmU_IlqM25nIueuE1fN2VPLu1rzLIoezQsBH3Rn5LNVYf4NmXuZQhLX6uh5S7N0FWHkMeH8rO1JI1-zMNpfU5CFoxa7KCesb2qtRR521HZmOaGJmNBw64tYLoBgM2f9lduYE0twIOSOaii0meiPi345zZ8kgLGoR1BgGxFiCUEn4TOOW3Q61KFigBYSNw2_IgV_XItXMPOAfAlXm7NZcdYzLxj4Ep_XgFkJHS4dlOt_MmQ3JsF2KTq60IkjIejSZrfVXTg"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <a onclick="navigateTo('home')" class="text-center group cursor-pointer">
+                            <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-8 shadow-lg shadow-black/10 transition-transform group-hover:scale-105">
+                                <span class="material-symbols-outlined text-primary text-5xl">school</span>
+                            </div>
+                            <h1 class="text-white text-4xl font-black tracking-tight leading-tight mb-4 transition-colors group-hover:text-white/90">LAKEVIEW ACADEMY</h1>
+                        </a>
+                        <p class="text-white/70 text-lg font-light max-w-sm text-center">Secure Admin Portal. Manage your institution's records, staff, and students with ease.</p>
+                    </div>
+                </div>
+                <!-- Right Side: Login Form -->
+                <div class="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center relative">
+                    <a class="absolute top-6 right-6 text-sm font-bold text-gray-400 hover:text-primary flex items-center gap-1 transition-colors cursor-pointer" onclick="navigateTo('home')">
+                        <span class="material-symbols-outlined text-lg">home</span> Home
+                    </a>
+                    <div class="mb-8">
+                        <div class="flex items-center gap-2 mb-2 text-primary">
+                            <span class="material-symbols-outlined text-sm font-bold">shield_person</span>
+                            <span class="text-xs font-bold uppercase tracking-widest">Secure Admin Access</span>
+                        </div>
+                        <h2 class="text-3xl font-black text-gray-900 dark:text-white mb-2">Welcome Back</h2>
+                        <p class="text-gray-500 dark:text-gray-400">Please enter your credentials to access the dashboard.</p>
+                    </div>
+                    <form id="admin-login-form" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Administrator ID</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">badge</span>
+                                </div>
+                                <input id="admin-login-id" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="admin@lakeview.edu" type="text" required/>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">Password</label>
+                                <a class="text-xs font-medium text-primary hover:underline" href="#">Forgot password?</a>
+                            </div>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">lock</span>
+                                </div>
+                                <input id="admin-login-password" class="w-full pl-11 pr-12 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="••••••••" type="password" required/>
+                                <button type="button" onclick="togglePassword('admin-login-password', 'admin-login-eyeIcon')" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-primary transition-colors">
+                                    <span id="admin-login-eyeIcon" class="material-symbols-outlined">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="admin-login-remember" type="checkbox"/>
+                            <label class="text-sm text-gray-500 dark:text-gray-400" for="admin-login-remember">Keep me logged in</label>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg shadow-lg shadow-primary/25 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+                            <span class="material-symbols-outlined">login</span> Access Dashboard
+                        </button>
+                    </form>
+                    <div class="mt-10 pt-6 border-t border-gray-100 dark:border-white/5 text-center">
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">
+                            Need assistance? 
+                            <a class="text-primary font-bold hover:underline ml-1 inline-flex items-center gap-1 cursor-pointer" onclick="navigateTo('contact')">
+                                Contact IT Support <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Admin Dashboard View (hidden by default) -->
+        <div id="admin-dashboard-view" class="hidden">
+            <div class="max-w-7xl mx-auto px-6 py-12">
+                <!-- Dashboard Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
+                    <div>
+                        <h1 class="text-3xl font-black tracking-tight">Admin Dashboard</h1>
+                        <p class="text-slate-500 mt-1">Welcome back, <span id="admin-user-name" class="font-bold">Administrator</span>. Here's what's happening.</p>
+                    </div>
+                    <button id="admin-logout-button" class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                        <span class="material-symbols-outlined text-lg">logout</span>
+                        Logout
+                    </button>
+                </div>
+
+
+                <!-- Stat Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">mail</span></div>
+                        <div><p class="text-sm font-bold text-slate-500 dark:text-slate-400">New Inquiries</p><p id="stat-inquiries" class="text-3xl font-black">0</p></div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">person_add</span></div>
+                        <div><p class="text-sm font-bold text-slate-500 dark:text-slate-400">New Applicants</p><p class="text-3xl font-black">12</p></div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/10 text-green-500 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">school</span></div>
+                        <div><p class="text-sm font-bold text-slate-500 dark:text-slate-400">Total Students</p><p class="text-3xl font-black">1,284</p></div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 text-yellow-500 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">pending</span></div>
+                        <div><p class="text-sm font-bold text-slate-500 dark:text-slate-400">Pending Tasks</p><p class="text-3xl font-black">7</p></div>
+                    </div>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Notifications Column -->
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div class="p-6 border-b border-slate-200 dark:border-slate-800">
+                            <h2 class="text-xl font-bold">Recent Notifications</h2>
+                            <p class="text-sm text-slate-500">Inquiries from the public contact form.</p>
+                        </div>
+                        <div id="admin-notifications-container">
+                            <!-- JS will render notifications here -->
+                        </div>
+                    </div>
+
+                    <!-- Activity Log Column -->
+                    <div class="space-y-8">
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                            <h2 class="text-xl font-bold mb-4">Activity Log</h2>
+                            <div id="admin-activity-log" class="space-y-2">
+                                <!-- JS will render activities here -->
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                            <h2 class="text-xl font-bold mb-4">Quick Actions</h2>
+                            <div class="flex flex-col gap-3">
+                                <button class="w-full text-left flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"><span class="material-symbols-outlined text-primary">add</span> <span class="font-semibold text-sm">New Announcement</span></button>
+                                <button class="w-full text-left flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"><span class="material-symbols-outlined text-primary">group_add</span> <span class="font-semibold text-sm">Register Student</span></button>
+                                <button class="w-full text-left flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"><span class="material-symbols-outlined text-primary">event</span> <span class="font-semibold text-sm">Schedule Event</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEWS PAGE -->
+    <div id="page-news" class="page-content hidden">
+        <!-- Hero Alert Section -->
+        <section class="w-full mb-12">
+            <div class="relative overflow-hidden bg-background-dark dark:bg-slate-900 shadow-2xl min-h-[400px] flex flex-col justify-end">
+                <div class="absolute inset-0 opacity-40">
+                    <img class="w-full h-full object-cover" data-alt="Exterior view of a modern school campus building" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqt29T_3JHOrZPRjSNWeeJZsDcCWfnJShHaRhMovojwDb68FDAIbOoayzQrIEDm858TkjtdweW2AZCHqyGphiiibvvW7Y0cOR4X0B_YUrHks2nuEV4eJXHNokCdqcG_Ta1qubxwdzTrZr7qSq9ljC2wpSSzncybxHrKzYDS5BdiSAxBSMFRooVJhe2ehj30enoIYX4dpgxIvnemDbDSWiy2a6SQV7Ffzyswz6UoKZ7TCkwgJGHcpVahXlzz5WJwuniDFFgUawYKlE"/>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent"></div>
+                <div class="relative z-10 w-full px-6 lg:px-10 py-12">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary text-white text-xs font-bold rounded-full mb-4 uppercase tracking-widest">
+                            <span class="material-symbols-outlined text-sm">error</span>
+                            Urgent Update
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-black text-white leading-tight mb-4 tracking-tight">
+                            School Closure: Inclement Weather Warning
+                        </h2>
+                        <p class="text-slate-200 text-lg mb-6 leading-relaxed">
+                            Lakeview Academy campus will remain closed tomorrow, Friday, October 25th, due to forecasted extreme weather conditions. Remote learning schedules have been sent to parent emails.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:translate-y-[-2px] transition-transform">
+                                View Full Details
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                            <button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-xl font-bold hover:bg-white/20 transition-all">
+                                Learning Materials
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Main Content Area -->
+        <div class="w-full px-6 lg:px-10 pb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Sidebar Filters -->
+                <aside class="lg:col-span-3 space-y-8 order-2 lg:order-1">
+                    <div>
+                        <h3 class="text-sm font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-lg">filter_list</span>
+                            Categories
+                        </h3>
+                        <nav class="flex flex-col gap-1">
+                            <a class="flex items-center justify-between px-4 py-2 rounded-lg bg-primary/10 text-primary font-bold" href="#">
+                                All News <span class="text-xs bg-primary text-white px-2 py-0.5 rounded-full">24</span>
+                            </a>
+                            <a class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-medium" href="#">
+                                Administration <span class="text-xs text-slate-500">12</span>
+                            </a>
+                            <a class="flex items-center justify-between px-4 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors font-medium" href="#">
+                                Academics <span class="text-xs text-slate-500">8</span>
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="bg-slate-100 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <h3 class="text-sm font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
+                            Coming Soon
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
+                                    <span class="text-[10px] uppercase font-bold text-primary">Nov</span>
+                                    <span class="text-lg font-black leading-none">12</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-bold leading-tight">Winter Arts Showcase</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Main Auditorium • 6:30 PM</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700">
+                                    <span class="text-[10px] uppercase font-bold text-primary">Nov</span>
+                                    <span class="text-lg font-black leading-none">15</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-bold leading-tight">College Prep Workshop</h4>
+                                    <p class="text-xs text-slate-500 mt-1">Virtual Link Sent</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full mt-6 text-sm font-bold text-primary hover:underline flex items-center justify-center gap-1">
+                            View Full Calendar
+                            <span class="material-symbols-outlined text-base">open_in_new</span>
+                        </button>
+                    </div>
+                    <div class="bg-primary/5 p-6 rounded-xl border-2 border-dashed border-primary/20 text-center">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-2">mail</span>
+                        <h3 class="font-bold mb-2">Weekly Briefing</h3>
+                        <p class="text-xs text-slate-500 mb-4 leading-relaxed">Get the most important news delivered to your inbox every Sunday.</p>
+                        <input class="w-full text-xs rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-primary focus:border-primary mb-2" placeholder="email@example.com" type="email"/>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-xs font-bold hover:bg-primary/90 transition-colors">Subscribe</button>
+                    </div>
+                </aside>
+                <!-- News Feed -->
+                <div class="lg:col-span-9 space-y-8 order-1 lg:order-2">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-2xl font-black tracking-tight">Latest Announcements</h2>
+                        <div class="flex items-center gap-2 text-sm text-slate-500 font-medium">
+                            Sort by: 
+                            <select class="bg-transparent border-none text-slate-900 dark:text-white font-bold py-0 focus:ring-0 cursor-pointer">
+                                <option>Newest First</option>
+                                <option>Oldest First</option>
+                                <option>Most Read</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- News Item 1 -->
+                    <article class="group bg-white dark:bg-slate-900/40 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800 p-1 flex flex-col md:flex-row">
+                        <div class="w-full md:w-64 h-48 md:h-auto overflow-hidden rounded-lg">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Senior students celebrating at a graduation ceremony" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA2plM6FR9WF4seMlVN7U72mDCMV3BJjbvuRSxXwM2OC9jinTes8-wTqgX-dwJ5XO1KkHJUe5KP0RwrmDfyDcrozKjc4eiB4VIagLOQX31lCLy3D4cyMma1HkdxzG-p3Lz4cs75zWbsLfcPZqrfHmaqStTWhCYo7VCL6Y2W4r-pFpHIwRysIidQt9qR4wPaj366nP6zLdmULQXbGBMVlDPGitwRPRA1QZOxIHkGa-7u8ICObQpfS_4PwXuAgJ3rmEYTilpYs8Wxhg"/>
+                        </div>
+                        <div class="flex-1 p-6 md:p-8 flex flex-col justify-center">
+                            <div class="flex items-center gap-4 mb-4">
+                                <span class="text-xs font-black uppercase text-primary bg-primary/10 px-2 py-1 rounded">Administration</span>
+                                <span class="text-xs text-slate-500 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                    Oct 24, 2024
+                                </span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-black mb-3 group-hover:text-primary transition-colors leading-tight">
+                                Annual Excellence Gala: Celebrating Our Scholars
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 line-clamp-2 mb-6">
+                                Join us for an evening of celebration as we honor the outstanding academic achievements of our senior class. Early bird tickets are now available for the upcoming November event.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-slate-200 overflow-hidden">
+                                        <img class="w-full h-full object-cover" data-alt="Portrait of a male school administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5JxwtHQDNBh2CSjqzXwv-58oow2W1oIeZ1LH9qHiljhIvFdB9uW1FvYl8ciH8-3x2vKjuDi3GH4D7kmgHNRn-txGy6P5k2rfNIEmoyHs_x3gxzdNlivo3DvRCVY8Qa6DDbpFB_MaQFy3dokgy8t421Qn-kYnOLEb2-KzO03myAhWj2XEvwxVDMZpcAUQYyd1gjKVO3o_N-LVmtILqAKHgdSefMrFW1HHxCI-a-yorgrsQXPqm-XvmROe5uu6DO7tquaqJsfEe7zU"/>
+                                    </div>
+                                    <span class="text-xs font-semibold">Principal Marcus Thorne</span>
+                                </div>
+                                <a class="text-primary font-bold text-sm flex items-center gap-1 group/link" href="#">
+                                    Read More
+                                    <span class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform">chevron_right</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- News Item 2 -->
+                    <article class="group bg-white dark:bg-slate-900/40 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800 p-1 flex flex-col md:flex-row">
+                        <div class="w-full md:w-64 h-48 md:h-auto overflow-hidden rounded-lg">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Student athletes running on a track during sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqHElVQtIXcAs0L3OCanD3dYjTcz_vGU6r_25z7Ov2lIQfE15DOSmIQX0kUO95HOdbd0wV6vxFS6cIuVZIvArSkCSqIj2PRRzrrLRHRr3r0MvkB8EsFotrWd2PflC9c2m9OgjS79wc-uj6-4lZFye74n5O336OIrTsEIEMm16IeRfBq0BF6tK3HL5qNw83h56oPBTlmynmMRBFJxsCFn3iNpKvmZqMa8WOx9cdoGdCDBSfQ9g6_bznN5oKFpbYfofpqrcGn3i7bCc"/>
+                        </div>
+                        <div class="flex-1 p-6 md:p-8 flex flex-col justify-center">
+                            <div class="flex items-center gap-4 mb-4">
+                                <span class="text-xs font-black uppercase text-blue-600 bg-blue-50 dark:bg-blue-900/20 px-2 py-1 rounded">Athletics</span>
+                                <span class="text-xs text-slate-500 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                    Oct 21, 2024
+                                </span>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-black mb-3 group-hover:text-primary transition-colors leading-tight">
+                                State Finals: Lakeview Eagles Advance
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 line-clamp-2 mb-6">
+                                Our varsity track team has secured a place in the state finals after a record-breaking performance at the regional qualifiers last Saturday.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-slate-200 overflow-hidden">
+                                        <img class="w-full h-full object-cover" data-alt="Portrait of a female athletic director" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9eFz3m4RWZgFN_hzXivYV2KZoXb6Od54DYvXANM0cERfT0XcE-qN2hPKo8yHOShx9B2JhuZ1BCHhCwLP1g8IUPdSQ3X_Myegm9-zKwk5RLv-7BHrUQha6EexHpt7H4HjLFNipTyjTxJ0BDz1nqCIpBgnJAyfR-opPzeh6vC50m512LKMtsq6T1dyQxpxr5ZhACv1PTwN2Mefw_05fEmk-P-7SRQKFlBw5Q33WHzg2ESywk-KKXFVW4_rSA_6XIt6WPix7OKex6AU"/>
+                                    </div>
+                                    <span class="text-xs font-semibold">Coach Sarah Jenkins</span>
+                                </div>
+                                <a class="text-primary font-bold text-sm flex items-center gap-1 group/link" href="#">
+                                    Read More
+                                    <span class="material-symbols-outlined text-base group-hover/link:translate-x-1 transition-transform">chevron_right</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- News Item 3 (Small variant) -->
+                    <article class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white dark:bg-slate-900/40 rounded-xl p-6 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-[10px] font-black uppercase text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded">Academics</span>
+                                <span class="text-[10px] text-slate-500">Oct 19, 2024</span>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2 leading-tight">New AP Curriculum Guidelines Released</h4>
+                            <p class="text-sm text-slate-500 mb-4">Updates to the 2025 Advanced Placement testing schedule and registration deadlines are now available for viewing.</p>
+                            <button class="text-primary text-xs font-bold flex items-center gap-1 uppercase tracking-wider">
+                                Download PDF <span class="material-symbols-outlined text-sm">download</span>
+                            </button>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900/40 rounded-xl p-6 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-[10px] font-black uppercase text-purple-600 bg-purple-50 dark:bg-purple-900/20 px-2 py-0.5 rounded">Student Life</span>
+                                <span class="text-[10px] text-slate-500">Oct 15, 2024</span>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2 leading-tight">Club Fair: 40+ New Organizations</h4>
+                            <p class="text-sm text-slate-500 mb-4">From Robotics to Chess, find your community at our annual fall club fair happening this Wednesday in the courtyard.</p>
+                            <button class="text-primary text-xs font-bold flex items-center gap-1 uppercase tracking-wider">
+                                Full List <span class="material-symbols-outlined text-sm">open_in_new</span>
+                            </button>
+                        </div>
+                    </article>
+                    <!-- Load More -->
+                    <div class="flex justify-center pt-4">
+                        <button class="flex items-center gap-2 px-8 py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-xl font-black text-slate-700 dark:text-slate-300 transition-all">
+                            Load More News
+                            <span class="material-symbols-outlined">expand_more</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PORTAL PAGE -->
+    <div id="page-portal" class="page-content hidden bg-slate-50 dark:bg-black/20">
+        <!-- Portal Login View (Staff Registration layout) -->
+        <div id="portal-login-view" class="flex min-h-[600px] items-center justify-center px-6 py-12">
+            <div class="w-full max-w-[1100px] flex flex-col md:flex-row bg-white dark:bg-[#2d1d15] rounded-xl shadow-2xl overflow-hidden border border-primary/10">
+                <!-- Left Side: Branding & Image -->
+                <div class="hidden md:flex md:w-1/2 relative bg-[#221610] items-center justify-center p-12 overflow-hidden">
+                    <div class="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <a href="index.html" class="text-center group">
+                            <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center mb-8 shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
+                                <span class="material-symbols-outlined text-white text-5xl">school</span>
+                            </div>
+                            <h1 class="text-white text-4xl font-black tracking-tight leading-tight mb-4 transition-colors group-hover:text-primary">LAKEVIEW ACADEMY</h1>
+                        </a>
+                        <p class="text-white/70 text-lg font-light max-w-sm text-center">Join the faculty portal to manage your courses, students, and academic resources in one secure location.</p>
+                        <div class="mt-12 w-full h-64 bg-cover bg-center rounded-xl border border-white/10 shadow-inner" data-alt="Modern professional office building interior" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOchl-uChbnM8aDGBOUfpvvEcO9rQAWIJ7-PDC-OStFlA1DC0-C6frs3kmpf2huoVWILxNGBJyVkS_lF53tSFwFInGi9Xz6uP0UQ6oJzRea_xP5ElABY-7MrEcpXqDje6vJvImKgsmQEvnRin1HXtFvziOAsJxPUCOKgUABN1-Crtq_3o8a74PJ5ODsfetlp0iHhViu7YdKpFTVi3fAnn-dlROQKTaCvl-IpOKi2Fcn6skZqvz8VvpTaCxBBUgDC5DYHDRPBHaTbY");'>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Side: Registration Form -->
+                <div class="flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center relative">
+                    <a class="absolute top-6 right-6 text-sm font-bold text-gray-400 hover:text-primary flex items-center gap-1 transition-colors" href="index.html">
+                        <span class="material-symbols-outlined text-lg">home</span>
+                        Home
+                    </a>
+                    <div class="mb-8">
+                        <div class="flex items-center gap-2 mb-2 text-primary">
+                            <span class="material-symbols-outlined text-sm font-bold">shield</span>
+                            <span class="text-xs font-bold uppercase tracking-widest">Secure Staff Access</span>
+                        </div>
+                        <h2 class="text-3xl font-black text-gray-900 dark:text-white mb-2">Create Account</h2>
+                        <p class="text-gray-500 dark:text-gray-400">Please enter your professional details to register. Exit if not a part of the School Administration.</p>
+                    </div>
+                    <form id="registrationForm" class="space-y-5" onsubmit="handleRegister(event)">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Full Name</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">person</span>
+                                </div>
+                                <input id="fullName" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="Johnathan Doe" type="text" required/>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Email Address</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">mail</span>
+                                </div>
+                                <input id="email" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="j.doe@lakeview.edu" type="email" required/>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Create Password</label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">lock</span>
+                                </div>
+                                <input id="password" class="w-full pl-11 pr-12 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="••••••••" type="password" required/>
+                                <button type="button" onclick="togglePassword('password', 'eyeIcon')" class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-primary transition-colors">
+                                    <span id="eyeIcon" class="material-symbols-outlined">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Phone Number</label>
+                                <div class="relative group">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">phone</span>
+                                    </div>
+                                    <input id="phone" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="+1 (555) 000-0000" type="tel"/>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Staff ID</label>
+                                <div class="relative group">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">badge</span>
+                                    </div>
+                                    <input id="staffId" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 dark:bg-background-dark/50 border border-gray-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-400" placeholder="LV-XXXXX" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 py-2">
+                            <input class="mt-1 w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="terms" type="checkbox"/>
+                            <label class="text-sm text-gray-500 dark:text-gray-400 leading-snug" for="terms">
+                                I agree to the <a class="text-primary hover:underline font-medium" href="#">Terms of Service</a> and <a class="text-primary hover:underline font-medium" href="#">Privacy Policy</a> regarding academy data handling.
+                            </label>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-lg shadow-lg shadow-primary/25 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+                            <span class="material-symbols-outlined">how_to_reg</span>
+                            Register Account
+                        </button>
+                    </form>
+                    <div class="mt-10 pt-6 border-t border-gray-100 dark:border-white/5 text-center">
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Already registered? <a class="text-primary font-bold hover:underline ml-1 inline-flex items-center gap-1 cursor-pointer" onclick="navigateTo('admin')">Login here <span class="material-symbols-outlined text-sm">arrow_forward</span></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portal Dashboard View (hidden by default) -->
+        <div id="portal-dashboard-view" class="hidden">
+            <div class="max-w-7xl mx-auto px-6 py-12">
+                <!-- Dashboard Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
+                    <div>
+                        <h1 id="portal-welcome-message" class="text-3xl font-black tracking-tight">Welcome!</h1>
+                        <p class="text-slate-500 mt-1">Here is your academic dashboard for the Fall 2024 semester.</p>
+                    </div>
+                    <button onclick="navigateTo('home'); document.getElementById('portal-dashboard-view').classList.add('hidden'); document.getElementById('portal-login-view').classList.remove('hidden');" class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                        <span class="material-symbols-outlined text-lg">logout</span>
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Main Column: Courses -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                            <h2 class="text-xl font-bold mb-4">Enrolled Courses (4)</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Course Card 1 -->
+                                <div class="border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col">
+                                    <p class="text-xs font-bold text-primary uppercase tracking-wider">CHEM-201</p>
+                                    <h3 class="font-bold text-lg my-1">Advanced Chemistry</h3>
+                                    <p class="text-sm text-slate-500 mb-3">Dr. Sterling</p>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mt-auto mb-2"><div class="bg-primary h-2 rounded-full" style="width: 75%"></div></div>
+                                    <p class="text-xs text-slate-500">75% Complete</p>
+                                </div>
+                                <!-- Course Card 2 -->
+                                <div class="border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col">
+                                    <p class="text-xs font-bold text-blue-500 uppercase tracking-wider">HIST-310</p>
+                                    <h3 class="font-bold text-lg my-1">World History: 1900-Present</h3>
+                                    <p class="text-sm text-slate-500 mb-3">Prof. Chen</p>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mt-auto mb-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 60%"></div></div>
+                                    <p class="text-xs text-slate-500">60% Complete</p>
+                                </div>
+                                <!-- Course Card 3 -->
+                                <div class="border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col">
+                                    <p class="text-xs font-bold text-green-500 uppercase tracking-wider">CS-101</p>
+                                    <h3 class="font-bold text-lg my-1">Intro to Python</h3>
+                                    <p class="text-sm text-slate-500 mb-3">Dr. Rodriguez</p>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mt-auto mb-2"><div class="bg-green-500 h-2 rounded-full" style="width: 90%"></div></div>
+                                    <p class="text-xs text-slate-500">90% Complete</p>
+                                </div>
+                                <!-- Course Card 4 -->
+                                <div class="border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex flex-col">
+                                    <p class="text-xs font-bold text-purple-500 uppercase tracking-wider">ART-250</p>
+                                    <h3 class="font-bold text-lg my-1">Digital Photography</h3>
+                                    <p class="text-sm text-slate-500 mb-3">Prof. O'Connor</p>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mt-auto mb-2"><div class="bg-purple-500 h-2 rounded-full" style="width: 70%"></div></div>
+                                    <p class="text-xs text-slate-500">70% Complete</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Column: Assignments & Grades -->
+                    <div class="space-y-8">
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                            <h2 class="text-xl font-bold mb-4">Upcoming Assignments</h2>
+                            <div class="space-y-4">
+                                <div class="flex gap-4"><div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex-shrink-0 flex flex-col items-center justify-center"><span class="text-xs font-bold">NOV</span><span class="text-lg font-black leading-none">18</span></div><div><h4 class="font-bold text-sm">CHEM-201 Lab Report</h4><p class="text-xs text-slate-500">Due 11:59 PM</p></div></div>
+                                <div class="flex gap-4"><div class="w-12 h-12 rounded-lg bg-blue-500/10 text-blue-500 flex-shrink-0 flex flex-col items-center justify-center"><span class="text-xs font-bold">NOV</span><span class="text-lg font-black leading-none">20</span></div><div><h4 class="font-bold text-sm">HIST-310 Essay</h4><p class="text-xs text-slate-500">Due 11:59 PM</p></div></div>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                            <h2 class="text-xl font-bold mb-4">Recent Grades</h2>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center"><p class="font-semibold text-sm">CS-101 Midterm Exam</p><span class="font-black text-lg text-green-500">A-</span></div>
+                                <div class="flex justify-between items-center"><p class="font-semibold text-sm">ART-250 Photo Project</p><span class="font-black text-lg text-green-500">A</span></div>
+                                <div class="flex justify-between items-center"><p class="font-semibold text-sm">CHEM-201 Quiz 5</p><span class="font-black text-lg text-yellow-500">B+</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTP VERIFICATION PAGE -->
+    <div id="page-otp" class="page-content hidden bg-slate-50 dark:bg-black/20">
+        <div class="flex min-h-[600px] items-center justify-center p-6">
+            <div class="w-full max-w-md">
+                <div class="bg-white dark:bg-[#2d1d15] shadow-2xl rounded-xl border border-primary/10 overflow-hidden">
+                    <div class="px-8 py-10">
+                        <div class="mx-auto w-16 h-16 bg-primary rounded-xl flex items-center justify-center shadow-lg mb-6 border-4 border-white dark:border-[#2d1d15]">
+                            <span class="material-symbols-outlined !text-4xl text-white">pin</span>
+                        </div>
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-bold text-background-dark dark:text-white">Email Verification</h2>
+                            <p class="text-background-dark/60 dark:text-white/60 text-sm mt-2">
+                                An OTP has been sent to your email. Please enter it below to complete your registration.
+                            </p>
+                        </div>
+                        <form id="otpForm" class="space-y-5" onsubmit="handleVerifyOtp(event)">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-semibold text-background-dark/80 dark:text-white/80" for="otp-input">
+                                    One-Time Password (OTP)
+                                </label>
+                                <div class="relative">
+                                    <input class="w-full text-center tracking-[1em] pl-4 pr-4 py-3 bg-background-light dark:bg-background-dark/50 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-background-dark/30 dark:placeholder:text-white/30 text-background-dark dark:text-white" id="otp-input" name="otp" placeholder="••••••" required="" type="text" maxlength="6"/>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a id="resend-otp" class="text-xs font-medium text-primary hover:underline cursor-pointer">Didn't receive the code? Resend OTP</a>
+                            </div>
+                            <button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 rounded-lg shadow-md shadow-primary/20 transition-all flex items-center justify-center gap-2 group" type="submit">
+                                <span>Verify & Complete</span>
+                                <span class="material-symbols-outlined !text-xl group-hover:translate-x-1 transition-transform">verified_user</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-slate-900 dark:bg-black text-slate-400 py-16 border-t border-slate-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-1 space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="bg-primary p-1.5 rounded-lg text-white">
+                        <span class="material-symbols-outlined text-2xl">school</span>
+                    </div>
+                    <h1 class="text-lg font-bold tracking-tight text-white">Lakeview Academy</h1>
+                </div>
+                <p class="text-sm leading-relaxed">Excellence in education since 2020. Empowering students to lead and innovate in a changing world.</p>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-6">Explore</h5>
+                <ul class="space-y-4 text-sm">
+                    <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('catalog')">Courses</a></li>
+                    <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('about')">Scholarships</a></li>
+                    <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('about')">Faculty</a></li>
+                    <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('about')">Alumni</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-6">Support</h5>
+                <ul class="space-y-4 text-sm">
+                    <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('contact')">Help Center</a></li>
+                    <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('about')">Privacy Policy</a></li>
+                    <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('about')">Terms of Service</a></li>
+                    <li><a class="hover:text-primary transition-colors cursor-pointer" onclick="navigateTo('portal')">Staff Portal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold mb-6">Contact Us</h5>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">mail</span>
+                        info@lakeviewacademy.edu
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">call</span>
+                        +1 (555) 000-1234
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">location_on</span>
+                        123 Academy Drive, Lakeview
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium">
+            <p>© 2026 Lakeview Academy. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a class="hover:text-white transition-colors" href="#">Twitter</a>
+                <a class="hover:text-white transition-colors" href="#">LinkedIn</a>
+                <a class="hover:text-white transition-colors" href="#">Instagram</a>
+                <a class="hover:text-white transition-colors" href="#">Facebook</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Page Navigation Function
+    function navigateTo(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page-content').forEach(page => {
+            page.classList.add('hidden');
+        });
+        
+        // Show selected page
+        const selectedPage = document.getElementById(`page-${pageId}`);
+        if (selectedPage) {
+            selectedPage.classList.remove('hidden');
+        }
+        
+        // Update navigation styling
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('text-primary', 'bg-primary/10');
+            link.classList.add('text-slate-600', 'dark:text-slate-300', 'hover:text-primary');
+        });
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+        // Close mobile menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(mobileMenu) {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Special handling for admin page to check auth status
+        if (pageId === 'admin') {
+            checkAdminAuth();
+        }
+    }
+
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Contact form handler
+    function handleContactSubmit(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We will respond within 24 hours.');
+        document.getElementById('contactForm').reset();
+    }
+
+    // Toggle password visibility for staff registration
+    function togglePassword(inputId, iconId) {
+        const passwordInput = document.getElementById(inputId);
+        const eyeIcon = document.getElementById(iconId);
+        if (!passwordInput || !eyeIcon) return;
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.textContent = 'visibility_off';
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.textContent = 'visibility';
+        }
+    }
+
+    // Simple client-side registration handler (stores minimal state and redirects to OTP page)
+    async function handleRegister(e) {
+        e.preventDefault();
+        if (!sb) {
+            alert('Supabase client is not initialized. Please check your connection and configuration.');
+            return;
+        }
+
+        const email = document.getElementById('email')?.value || '';
+        const password = document.getElementById('password')?.value || '';
+        const fullName = document.getElementById('fullName')?.value || '';
+        const phone = document.getElementById('phone')?.value || '';
+        const staffId = document.getElementById('staffId')?.value || '';
+
+        localStorage.setItem('pendingEmail', email);
+
+        try {
+            const { data, error } = await sb.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: { full_name: fullName, phone: phone, staff_id: staffId }
+                }
+            });
+
+            if (error) throw error;
+
+            // Log activity
+            const activities = JSON.parse(localStorage.getItem('lakeview_activities') || '[]');
+            activities.unshift({
+                user: fullName,
+                action: 'New Staff Registration',
+                date: new Date().toLocaleString(),
+                status: 'Pending'
+            });
+            localStorage.setItem('lakeview_activities', JSON.stringify(activities));
+
+            alert('A verification code has been sent to your email.');
+            navigateTo('otp');
+
+        } catch (error) {
+            alert('Registration failed: ' + error.message);
+        }
+    }
+
+    // OTP Verification Handler
+    async function handleVerifyOtp(e) {
+        e.preventDefault();
+        if (!sb) return;
+
+        const otp = document.getElementById('otp-input')?.value;
+        const email = localStorage.getItem('pendingEmail');
+
+        if (!otp || !email) {
+            alert('Could not find pending registration details. Please try registering again.');
+            navigateTo('portal');
+            return;
+        }
+
+        try {
+            const { data, error } = await sb.auth.verifyOtp({ email, token: otp, type: 'signup' });
+            if (error) throw error;
+
+            alert('Verification successful! You are now logged in.');
+            navigateTo('admin');
+
+        } catch (error) {
+            alert('OTP Verification failed: ' + error.message);
+        }
+    }
+
+    // Check if admin is already logged in when navigating to the admin page
+    async function checkAdminAuth() {
+        if (!sb) return;
+        const { data: { session } } = await sb.auth.getSession();
+        if (session) {
+            document.getElementById('admin-login-view').classList.add('hidden');
+            document.getElementById('admin-dashboard-view').classList.remove('hidden');
+            loadAdminDashboard();
+        } else {
+            // Explicitly show the login view and hide the dashboard if no session exists
+            document.getElementById('admin-login-view').classList.remove('hidden');
+            document.getElementById('admin-dashboard-view').classList.add('hidden');
+        }
+    }
+</script>
+</body>
+</html>

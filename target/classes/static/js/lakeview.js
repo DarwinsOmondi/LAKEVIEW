@@ -23,7 +23,7 @@ tailwind.config = {
 // Initialize Supabase
 // Make sure to include the Supabase JS CDN in your HTML files before this script runs, or ensure it's available globally.
 const supabaseUrl = 'https://sdpdmqndlabrfjrczyam.supabase.co'; // TODO: Replace with your actual Supabase Project URL (e.g., https://xyz.supabase.co)
-const supabaseKey = 'sb_publishable_7Lxc83XanPdTuz0GzhPAgQ__bucoIXW'; // The API key you provided
+const supabaseKey = 'sb_publishable_7Lxc83XanPdTuz0GzhPAgQ__bucoIXW';
 
 // Create a single supabase client for interacting with your database
 const sb = typeof supabase !== 'undefined' ? supabase.createClient(supabaseUrl, supabaseKey) : null;
@@ -46,25 +46,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Admin Login Logic
     const adminLoginForm = document.getElementById('admin-login-form');
     if (adminLoginForm) {
-        adminLoginForm.addEventListener('submit', (e) => {
+        adminLoginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // In a real app, you'd validate credentials here.
-            document.getElementById('admin-login-view').classList.add('hidden');
-            const dashboard = document.getElementById('admin-dashboard-view');
-            dashboard.classList.remove('hidden');
-            loadAdminDashboard();
-        });
-    }
+            if (!sb) {
+                alert('Supabase client is not initialized.');
+                return;
+            }
 
-    // Portal Login Logic
-    const portalLoginForm = document.getElementById('portal-login-form');
-    if (portalLoginForm) {
-        portalLoginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // In a real app, you'd validate credentials here.
-            document.getElementById('portal-login-view').classList.add('hidden');
-            document.getElementById('portal-dashboard-view').classList.remove('hidden');
-            // Potentially load student data here in a real app
+            const email = document.getElementById('admin-login-id')?.value;
+            const password = document.getElementById('admin-login-password')?.value;
+
+            try {
+                const { data, error } = await sb.auth.signInWithPassword({
+                    email: email,
+                    password: password,
+                });
+
+                if (error) throw error;
+
+                // If login is successful, Supabase creates a session.
+                // The checkAdminAuth() function (called by navigateTo('admin')) will handle showing the dashboard.
+                alert('Login successful!');
+                navigateTo('admin'); // Re-run auth check to show dashboard
+
+            } catch (error) {
+                alert('Login Failed: ' + error.message);
+            }
         });
     }
 

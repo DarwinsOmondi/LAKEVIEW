@@ -23,7 +23,7 @@ tailwind.config = {
 // Initialize Supabase
 // Make sure to include the Supabase JS CDN in your HTML files before this script runs, or ensure it's available globally.
 const supabaseUrl = 'https://sdpdmqndlabrfjrczyam.supabase.co'; // TODO: Replace with your actual Supabase Project URL (e.g., https://xyz.supabase.co)
-const supabaseKey = 'sb_publishable_7Lxc83XanPdTuz0GzhPAgQ__bucoIXW'; // The API key you provided
+const supabaseKey = 'sb_publishable_7Lxc83XanPdTuz0GzhPAgQ__bucoIXW';
 
 // Create a single supabase client for interacting with your database
 const sb = typeof supabase !== 'undefined' ? supabase.createClient(supabaseUrl, supabaseKey) : null;
@@ -41,17 +41,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Admin & Portal Dashboard Logic ---
+
     // Admin Login Logic
     const adminLoginForm = document.getElementById('admin-login-form');
     if (adminLoginForm) {
         adminLoginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('admin-login-id').value;
-            const password = document.getElementById('admin-login-password').value;
-            const button = adminLoginForm.querySelector('button[type="submit"]');
-            
-            button.disabled = true;
-            button.innerHTML = `<span class="material-symbols-outlined animate-spin">progress_activity</span> Logging In...`;
+            if (!sb) {
+                alert('Supabase client is not initialized.');
+                return;
+            }
+
+            const email = document.getElementById('admin-login-id')?.value;
+            const password = document.getElementById('admin-login-password')?.value;
 
             try {
                 const { data, error } = await sb.auth.signInWithPassword({
@@ -61,60 +64,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (error) throw error;
 
-                document.getElementById('admin-login-view').classList.add('hidden');
-                document.getElementById('admin-dashboard-view').classList.remove('hidden');
-                await loadAdminDashboard();
+                // If login is successful, Supabase creates a session.
+                // The checkAdminAuth() function (called by navigateTo('admin')) will handle showing the dashboard.
+                alert('Login successful!');
+                navigateTo('admin'); // Re-run auth check to show dashboard
 
             } catch (error) {
                 alert('Login Failed: ' + error.message);
-            } finally {
-                button.disabled = false;
-                button.innerHTML = `<span class="material-symbols-outlined">login</span> Access Dashboard`;
             }
-        });
-    }
-
-    // Admin Logout Logic
-    const adminLogoutButton = document.getElementById('admin-logout-button');
-    if (adminLogoutButton) {
-        adminLogoutButton.addEventListener('click', async () => {
-            await sb.auth.signOut();
-            document.getElementById('admin-dashboard-view').classList.add('hidden');
-            document.getElementById('admin-login-view').classList.remove('hidden');
-            alert('You have been logged out.');
-        });
-    }
-
-    // Portal Login Logic
-    const portalLoginForm = document.getElementById('portal-login-form');
-    if (portalLoginForm) {
-        portalLoginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // In a real app, you'd validate credentials here.
-            document.getElementById('portal-login-view').classList.add('hidden');
-            document.getElementById('portal-dashboard-view').classList.remove('hidden');
-            // Potentially load student data here in a real app
         });
     }
 
     // Function to load and render admin dashboard data
-    async function loadAdminDashboard() {
-        // Fetch and display user info
-        if (!sb) return;
-        
-        const { data: { user } } = await sb.auth.getUser();
-        if (user) {
-            const userNameEl = document.getElementById('admin-user-name');
-            if (userNameEl) {
-                userNameEl.textContent = user.user_metadata?.full_name || user.email;
-            }
-        }
-
-        // Load data from localStorage (as before)
+    function loadAdminDashboard() {
         const notifications = JSON.parse(localStorage.getItem('lakeview_notifications') || '[]');
         renderNotifications(notifications);
         renderActivities();
-
+        
         const inquiryStat = document.getElementById('stat-inquiries');
         if(inquiryStat) {
             inquiryStat.textContent = notifications.length;
