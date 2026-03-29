@@ -98,13 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
         void mobileMenu.offsetWidth;
         
         if (mobileBackdrop) mobileBackdrop.classList.remove('opacity-0');
-        if (mobilePanel) mobilePanel.classList.remove('-translate-x-full');
+        if (mobilePanel) mobilePanel.classList.remove('translate-x-full');
     }
 
     function closeMobileMenu() {
         if (!mobileMenu) return;
         if (mobileBackdrop) mobileBackdrop.classList.add('opacity-0');
-        if (mobilePanel) mobilePanel.classList.add('-translate-x-full');
+        if (mobilePanel) mobilePanel.classList.add('translate-x-full');
 
         setTimeout(() => {
             mobileMenu.classList.add('hidden');

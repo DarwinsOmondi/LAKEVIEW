@@ -45,10 +45,10 @@
         <!-- Backdrop -->
         <div id="mobile-backdrop" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0 ease-in-out duration-300"></div>
 
-        <div class="fixed inset-0 flex">
+        <div class="fixed inset-0 flex justify-end">
             <!-- Panel -->
-            <div id="mobile-panel" class="relative mr-16 flex w-full max-w-xs flex-1 -translate-x-full transition ease-in-out duration-300 transform">
-                <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+            <div id="mobile-panel" class="relative flex w-full max-w-xs flex-1 translate-x-full transition ease-in-out duration-300 transform h-full">
+                <div class="absolute -left-16 top-0 flex w-16 justify-center pt-5">
                     <button type="button" id="close-mobile-menu" class="-m-2.5 p-2.5 text-white shadow-sm hover:text-gray-200">
                         <span class="sr-only">Close menu</span>
                         <span class="material-symbols-outlined text-3xl">close</span>
@@ -1269,15 +1269,7 @@
             const backdrop = document.getElementById('mobile-backdrop');
             const panel = document.getElementById('mobile-panel');
             if(backdrop) backdrop.classList.add('opacity-0');
-            if(panel) panel.classList.add('-translate-x-full');
-        }
-
-        // Special handling for admin page to check auth status
-        if (pageId === 'admin') {
-            checkAdminAuth();
-        }
-    }
-
+            if(panel) panel.classList.add('translate-x-full');
     // Contact form handler
     function handleContactSubmit(e) {
         e.preventDefault();
