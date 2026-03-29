@@ -28,18 +28,92 @@ const supabaseKey = 'sb_publishable_7Lxc83XanPdTuz0GzhPAgQ__bucoIXW';
 // Create a single supabase client for interacting with your database
 const sb = typeof supabase !== 'undefined' ? supabase.createClient(supabaseUrl, supabaseKey) : null;
 
+// Function to load and render admin dashboard data
+function loadAdminDashboard() {
+    const notifications = JSON.parse(localStorage.getItem('lakeview_notifications') || '[]');
+    renderNotifications(notifications);
+    renderActivities();
+    
+    const inquiryStat = document.getElementById('stat-inquiries');
+    if(inquiryStat) {
+        inquiryStat.textContent = notifications.length;
+    }
+}
+
+function renderNotifications(notifications) {
+    const container = document.getElementById('admin-notifications-container');
+    if (!container) return;
+
+    if (notifications.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-12 px-6">
+                <span class="material-symbols-outlined text-4xl text-slate-400">inbox</span>
+                <p class="mt-2 text-sm font-medium text-slate-500">No new notifications.</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = notifications.map(n => `
+        <div class="flex items-start gap-4 p-4 border-b border-slate-100 dark:border-slate-800 last:border-b-0">
+            <div class="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center bg-primary/10 text-primary">
+                <span class="material-symbols-outlined">${n.type === 'admission' ? 'assignment_ind' : 'contact_support'}</span>
+            </div>
+            <div class="flex-grow">
+                <p class="font-bold text-sm">${n.title} <span class="ml-2 text-xs font-medium text-slate-500">from ${n.user}</span></p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">${n.details}</p>
+                <div class="text-xs text-slate-400 mt-2"><span>${n.email}</span> &bull; <span>${n.date}</span></div>
+            </div>
+            <button class="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+        </div>
+    `).join('');
+}
+
+function renderActivities() {
+    const activities = JSON.parse(localStorage.getItem('lakeview_activities') || '[]');
+    const container = document.getElementById('admin-activity-log');
+    if (!container) return;
+
+    container.innerHTML = activities.slice(0, 5).map(a => `
+        <div class="flex items-center gap-4 py-3 border-b border-slate-200 dark:border-slate-800 last:border-b-0">
+            <span class="material-symbols-outlined text-slate-400 text-xl">history</span>
+            <div class="flex-grow"><p class="text-sm font-medium">${a.action}</p><p class="text-xs text-slate-500">${a.date}</p></div>
+            <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300">${a.status}</span>
+        </div>
+    `).join('');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = mobileMenuButton ? mobileMenuButton.querySelector('span.material-symbols-outlined') : null;
+    const mobileBackdrop = document.getElementById('mobile-backdrop');
+    const mobilePanel = document.getElementById('mobile-panel');
+    const closeMenuButton = document.getElementById('close-mobile-menu');
 
-    if (mobileMenuButton && mobileMenu && menuIcon) {
-        mobileMenuButton.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.toggle('hidden');
-            menuIcon.textContent = isHidden ? 'menu' : 'close';
-            mobileMenuButton.setAttribute('aria-expanded', !isHidden);
-        });
+    function openMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove('hidden');
+        
+        // Force reflow to enable transition
+        void mobileMenu.offsetWidth;
+        
+        if (mobileBackdrop) mobileBackdrop.classList.remove('opacity-0');
+        if (mobilePanel) mobilePanel.classList.remove('-translate-x-full');
     }
+
+    function closeMobileMenu() {
+        if (!mobileMenu) return;
+        if (mobileBackdrop) mobileBackdrop.classList.add('opacity-0');
+        if (mobilePanel) mobilePanel.classList.add('-translate-x-full');
+
+        setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+        }, 300); // Matches CSS duration
+    }
+
+    if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMobileMenu);
+    if (closeMenuButton) closeMenuButton.addEventListener('click', closeMobileMenu);
+    if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMobileMenu);
 
     // --- Admin & Portal Dashboard Logic ---
 
@@ -64,8 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (error) throw error;
 
-                // If login is successful, Supabase creates a session.
-                // The checkAdminAuth() function (called by navigateTo('admin')) will handle showing the dashboard.
                 alert('Login successful!');
                 navigateTo('admin'); // Re-run auth check to show dashboard
 
@@ -73,60 +145,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Login Failed: ' + error.message);
             }
         });
-    }
-
-    // Function to load and render admin dashboard data
-    function loadAdminDashboard() {
-        const notifications = JSON.parse(localStorage.getItem('lakeview_notifications') || '[]');
-        renderNotifications(notifications);
-        renderActivities();
-        
-        const inquiryStat = document.getElementById('stat-inquiries');
-        if(inquiryStat) {
-            inquiryStat.textContent = notifications.length;
-        }
-    }
-
-    function renderNotifications(notifications) {
-        const container = document.getElementById('admin-notifications-container');
-        if (!container) return;
-
-        if (notifications.length === 0) {
-            container.innerHTML = `
-                <div class="text-center py-12 px-6">
-                    <span class="material-symbols-outlined text-4xl text-slate-400">inbox</span>
-                    <p class="mt-2 text-sm font-medium text-slate-500">No new notifications.</p>
-                </div>
-            `;
-            return;
-        }
-
-        container.innerHTML = notifications.map(n => `
-            <div class="flex items-start gap-4 p-4 border-b border-slate-100 dark:border-slate-800 last:border-b-0">
-                <div class="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center bg-primary/10 text-primary">
-                    <span class="material-symbols-outlined">${n.type === 'admission' ? 'assignment_ind' : 'contact_support'}</span>
-                </div>
-                <div class="flex-grow">
-                    <p class="font-bold text-sm">${n.title} <span class="ml-2 text-xs font-medium text-slate-500">from ${n.user}</span></p>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">${n.details}</p>
-                    <div class="text-xs text-slate-400 mt-2"><span>${n.email}</span> &bull; <span>${n.date}</span></div>
-                </div>
-                <button class="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500"><span class="material-symbols-outlined text-lg">more_vert</span></button>
-            </div>
-        `).join('');
-    }
-
-    function renderActivities() {
-        const activities = JSON.parse(localStorage.getItem('lakeview_activities') || '[]');
-        const container = document.getElementById('admin-activity-log');
-        if (!container) return;
-
-        container.innerHTML = activities.slice(0, 5).map(a => `
-            <div class="flex items-center gap-4 py-3 border-b border-slate-200 dark:border-slate-800 last:border-b-0">
-                <span class="material-symbols-outlined text-slate-400 text-xl">history</span>
-                <div class="flex-grow"><p class="text-sm font-medium">${a.action}</p><p class="text-xs text-slate-500">${a.date}</p></div>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300">${a.status}</span>
-            </div>
-        `).join('');
     }
 });

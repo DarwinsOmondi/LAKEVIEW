@@ -41,17 +41,39 @@
         </div>
     </div>
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden">
-        <nav class="px-4 pt-2 pb-4 space-y-1">
-            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-primary bg-primary/10 cursor-pointer" onclick="navigateTo('home')">Home</a>
-            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('admin')">Admin</a>
-            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('catalog')">Course Catalog</a>
-            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('news')">News</a>
-            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('about')">About</a>
-            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('gallery')">Gallery</a>
-            <a class="nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer" onclick="navigateTo('contact')">Contact</a>
-            <a class="nav-link block mt-2 px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-primary/90 cursor-pointer" onclick="navigateTo('portal')">Portal</a>
-        </nav>
+    <div id="mobile-menu" class="relative z-50 lg:hidden hidden" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div id="mobile-backdrop" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity opacity-0 ease-in-out duration-300"></div>
+
+        <div class="fixed inset-0 flex">
+            <!-- Panel -->
+            <div id="mobile-panel" class="relative mr-16 flex w-full max-w-xs flex-1 -translate-x-full transition ease-in-out duration-300 transform">
+                <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                    <button type="button" id="close-mobile-menu" class="-m-2.5 p-2.5 text-white shadow-sm hover:text-gray-200">
+                        <span class="sr-only">Close menu</span>
+                        <span class="material-symbols-outlined text-3xl">close</span>
+                    </button>
+                </div>
+                
+                <nav class="flex grow flex-col gap-y-2 overflow-y-auto bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-6 pb-6 pt-6 shadow-2xl ring-1 ring-gray-900/10">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="bg-primary p-2 rounded-lg text-white">
+                            <span class="material-symbols-outlined text-2xl">school</span>
+                        </div>
+                        <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Lakeview</h1>
+                    </div>
+                    
+                    <a class="nav-link block px-3 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer" onclick="navigateTo('home')">Home</a>
+                    <a class="nav-link block px-3 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer" onclick="navigateTo('admin')">Admin</a>
+                    <a class="nav-link block px-3 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer" onclick="navigateTo('catalog')">Course Catalog</a>
+                    <a class="nav-link block px-3 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer" onclick="navigateTo('news')">News</a>
+                    <a class="nav-link block px-3 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer" onclick="navigateTo('about')">About</a>
+                    <a class="nav-link block px-3 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer" onclick="navigateTo('gallery')">Gallery</a>
+                    <a class="nav-link block px-3 py-3 rounded-xl text-base font-bold text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer" onclick="navigateTo('contact')">Contact</a>
+                    <a class="nav-link block mt-4 px-3 py-3 rounded-xl text-base font-bold text-white bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 text-center cursor-pointer" onclick="navigateTo('portal')">Portal Access</a>
+                </nav>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -822,7 +844,7 @@
                         <h2 class="text-2xl font-black tracking-tight">Latest Announcements</h2>
                         <div class="flex items-center gap-2 text-sm text-slate-500 font-medium">
                             Sort by: 
-                            <select class="bg-transparent border-none text-slate-900 dark:text-white font-bold py-0 focus:ring-0 cursor-pointer">
+                            <select class="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-300/50 dark:border-slate-600/50 text-slate-900 dark:text-white font-bold py-2 px-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary cursor-pointer hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all max-h-64 lg:bg-transparent lg:dark:bg-transparent lg:border-none lg:py-0 lg:px-0">
                                 <option>Newest First</option>
                                 <option>Oldest First</option>
                                 <option>Most Read</option>
@@ -1243,6 +1265,11 @@
         const mobileMenu = document.getElementById('mobile-menu');
         if(mobileMenu) {
             mobileMenu.classList.add('hidden');
+            // Reset animation state for next open
+            const backdrop = document.getElementById('mobile-backdrop');
+            const panel = document.getElementById('mobile-panel');
+            if(backdrop) backdrop.classList.add('opacity-0');
+            if(panel) panel.classList.add('-translate-x-full');
         }
 
         // Special handling for admin page to check auth status
@@ -1250,12 +1277,6 @@
             checkAdminAuth();
         }
     }
-
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
-    });
 
     // Contact form handler
     function handleContactSubmit(e) {
