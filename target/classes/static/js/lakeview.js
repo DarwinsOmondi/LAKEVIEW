@@ -25,6 +25,10 @@ tailwind.config = {
 const supabaseUrl = 'https://sdpdmqndlabrfjrczyam.supabase.co'; // TODO: Replace with your actual Supabase Project URL (e.g., https://xyz.supabase.co)
 const supabaseKey = 'sb_publishable_7Lxc83XanPdTuz0GzhPAgQ__bucoIXW';
 
+// Moodle Headless Configuration (Replace with your Moodle Instance Details)
+const MOODLE_URL = 'https://your-moodle-site.com/webservice/rest/server.php';
+const MOODLE_TOKEN = 'YOUR_MOODLE_WEB_SERVICE_TOKEN';
+
 // Create a single supabase client for interacting with your database
 const sb = typeof supabase !== 'undefined' ? supabase.createClient(supabaseUrl, supabaseKey) : null;
 
